@@ -1,0 +1,33 @@
+:root {
+	--primary: #28abce;
+	--nav-bg-color: #E5EAF3;
+	--nav-active-color: #ff7f7f;
+
+	--el-menu-active-color: var(--primary);
+	--el-menu-hover-text-color: var(--primary);
+	--el-color-primary: var(--primary) !important;
+}
+
+.dark {
+	--nav-bg-color: #262727;
+}
+
+[data-theme="primary"] {
+	--primary: #409EFF;
+}
+
+[data-theme="success"] {
+	--primary: #67C23A;
+}
+
+[data-theme="warning"] {
+	--primary: #E6A23C;
+}
+
+[data-theme="danger"] {
+	--primary: #F56C6C;
+}
+
+[data-theme="info"] {
+	--primary: #909399;
+}

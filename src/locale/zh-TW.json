@@ -1,0 +1,14 @@
+{
+	"navbar": {
+		"main": "主頁",
+		"wiki": "文檔站",
+		"gallery": "畫廊",
+		"guild": "公會",
+		"bbs": "論壇",
+		"rank": "排行榜",
+		"others": "其他",
+		"drawer": "菜單",
+		"cloud": "文件站",
+		"about": "關於我們"
+	}
+}

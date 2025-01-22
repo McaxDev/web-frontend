@@ -1,0 +1,53 @@
+body {
+	margin: 0;
+}
+
+.ms-auto {
+	margin-left: auto !important;
+}
+
+.p-0 {
+	padding: 0 !important;
+}
+
+.w-100 {
+	width: 100%;
+}
+
+.h-100vh {
+	height: calc(100vh - 60px);
+}
+
+.flex {
+	display: flex;
+}
+
+.align-center {
+	align-items: center;
+}
+
+.reactive-px {
+	padding: 0 15px;
+}
+
+.p-0 {
+	padding: 0 !important;
+}
+
+@media (min-width: 900px) {
+	.reactive-px {
+		padding: 0 100px;
+	}
+}
+
+@media (min-width: 1050px) {
+	.reactive-px {
+		padding: 0 150px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.reactive-px {
+		padding: 0 200px;
+	}
+}

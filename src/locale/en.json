@@ -1,0 +1,19 @@
+{
+	"navbar": {
+		"main": "Main",
+		"wiki": "Wiki",
+		"gallery": "Gallery",
+		"guild": "Guild",
+		"bbs": "Forum",
+		"rank": "Rank",
+		"others": "Others",
+		"drawer": "Menu",
+		"cloud": "Cloud",
+		"about": "About",
+		"login": "Login/Signup"
+	},
+	"login": {
+		"account": "Account",
+		"password": "Password"
+	}
+}

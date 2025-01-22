@@ -1,0 +1,41 @@
+{
+	"navbar": {
+		"main": "主页",
+		"wiki": "文档站",
+		"gallery": "画廊",
+		"guild": "公会",
+		"bbs": "论坛",
+		"rank": "排行榜",
+		"others": "其他",
+		"drawer": "菜单",
+		"cloud": "文件站",
+		"about": "关于我们",
+		"login": "登录/注册",
+		"theme": "主题",
+		"setting": "设置"
+	},
+	"login": {
+		"brand": "欢迎加入Axolotland！",
+		"account": "账号",
+		"password": "密码",
+		"login": "登录",
+		"signup": "注册",
+		"username": "用户名",
+		"email": "邮箱",
+		"emailCode": "邮箱验证码",
+		"sendEmail": "发送邮件",
+		"captcha": "验证码",
+		"retrieve": "找回密码",
+		"newPassword": "新密码"
+	},
+	"wiki": {
+		"drawer": "目录",
+		"add": "新增文档"
+	},
+	"cloud": {
+		"name": "文件名",
+		"time": "最后修改时间",
+		"size": "大小",
+		"open": "打开/下载"
+	}
+}
