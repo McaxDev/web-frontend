@@ -147,6 +147,7 @@ function toggleLanguage(language: string) {
     direction="ltr"
     :title="$t('navbar.drawer')"
     body-class="p-0"
+    size="50%"
   >
     <el-menu
       :default-active="route.path"

@@ -1,14 +1,42 @@
 {
-	"navbar": {
-		"main": "主頁",
-		"wiki": "文檔站",
-		"gallery": "畫廊",
-		"guild": "公會",
-		"bbs": "論壇",
-		"rank": "排行榜",
-		"others": "其他",
-		"drawer": "菜單",
-		"cloud": "文件站",
-		"about": "關於我們"
-	}
+    "navbar": {
+        "main": "主頁",
+        "wiki": "文檔站",
+        "gallery": "畫廊",
+        "guild": "公會",
+        "bbs": "論壇",
+        "rank": "排行榜",
+        "others": "其他",
+        "drawer": "菜單",
+        "cloud": "文件站",
+        "about": "關於我們",
+        "login": "登入/註冊",
+        "theme": "主題",
+        "setting": "設置"
+    },
+    "login": {
+        "brand": "歡迎加入Axolotland！",
+        "account": "賬號",
+        "password": "密碼",
+        "login": "登入",
+        "signup": "註冊",
+        "username": "用戶名",
+        "email": "郵箱",
+        "emailCode": "郵箱驗證碼",
+        "sendEmail": "發送郵件",
+        "captcha": "驗證碼",
+        "retrieve": "找回密碼",
+        "newPassword": "新密碼"
+    },
+    "wiki": {
+        "drawer": "目錄",
+        "add": "新增文檔"
+    },
+    "cloud": {
+        "name": "文件名",
+        "time": "最後修改時間",
+        "size": "大小",
+        "open": "打開/下載"
+    }
 }
+

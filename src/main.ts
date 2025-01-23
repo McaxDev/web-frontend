@@ -10,6 +10,11 @@ import router from './router'
 import zhCN from '@/locale/zh-CN.json'
 import zhTW from '@/locale/zh-TW.json'
 import en from '@/locale/en.json'
+import ru from '@/locale/ru.json'
+import fr from '@/locale/fr.json'
+import ja from '@/locale/ja.json'
+import ko from '@/locale/ko.json'
+import es from '@/locale/es.json'
 
 // 样式
 import 'element-plus/dist/index.css'
@@ -22,7 +27,7 @@ const app = createApp(App)
 const i18n = createI18n({
   locale: 'zhCN',
   fallbackLocale: 'en',
-  messages: {en, zhCN, zhTW},
+  messages: {en, zhCN, zhTW, ru, fr, ja, ko, es},
 })
 
 app.use(createPinia())

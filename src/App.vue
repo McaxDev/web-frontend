@@ -18,8 +18,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <header>
-    <ax-navbar class="navbar-box" />
+  <header class="navbar-box">
+    <ax-navbar />
   </header>
   <main>
     <router-view />
@@ -38,5 +38,6 @@ onMounted(() => {
 }
 main {
   min-height: calc(100vh - 60px);
+  padding-top: 60px;
 }
 </style>

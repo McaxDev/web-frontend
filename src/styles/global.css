@@ -26,28 +26,24 @@ body {
 	align-items: center;
 }
 
-.reactive-px {
-	padding: 0 15px;
-}
-
 .p-0 {
 	padding: 0 !important;
 }
 
-@media (min-width: 900px) {
-	.reactive-px {
-		padding: 0 100px;
+@media (min-width: 768px) {
+	.reactive-margin {
+		margin: 0 100px;
 	}
 }
 
-@media (min-width: 1050px) {
-	.reactive-px {
-		padding: 0 150px;
+@media (min-width: 992px) {
+	.reactive-margin {
+		margin: 0 150px;
 	}
 }
 
 @media (min-width: 1200px) {
-	.reactive-px {
-		padding: 0 200px;
+	.reactive-margin {
+		margin: 0 200px;
 	}
 }

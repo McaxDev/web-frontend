@@ -1,0 +1,42 @@
+{
+    "navbar": {
+        "main": "ホーム",
+        "wiki": "ウィキ",
+        "gallery": "ギャラリー",
+        "guild": "ギルド",
+        "bbs": "フォーラム",
+        "rank": "ランキング",
+        "others": "その他",
+        "drawer": "メニュー",
+        "cloud": "ファイルステーション",
+        "about": "私たちについて",
+        "login": "ログイン/登録",
+        "theme": "テーマ",
+        "setting": "設定"
+    },
+    "login": {
+        "brand": "Axolotlandへようこそ！",
+        "account": "アカウント",
+        "password": "パスワード",
+        "login": "ログイン",
+        "signup": "登録",
+        "username": "ユーザー名",
+        "email": "メール",
+        "emailCode": "メール認証コード",
+        "sendEmail": "メール送信",
+        "captcha": "キャプチャ",
+        "retrieve": "パスワードをリセット",
+        "newPassword": "新しいパスワード"
+    },
+    "wiki": {
+        "drawer": "目次",
+        "add": "ドキュメントを追加"
+    },
+    "cloud": {
+        "name": "ファイル名",
+        "time": "最終更新日時",
+        "size": "サイズ",
+        "open": "開く/ダウンロード"
+    }
+}
+

@@ -2,6 +2,12 @@ import axios from "axios";
 import { ElMessage } from "element-plus";
 import { apiAddr, fileAddr } from "@/config";
 
+declare module 'axios' {
+  interface AxiosRequestConfig {
+    noMsg?: boolean,
+  }
+}
+
 export const apiAxios = axios.create({
   baseURL: apiAddr,
   timeout: 5000,
@@ -15,6 +21,15 @@ export const fileAxios = axios.create({
   timeout: 5000,
 })
 
+apiAxios.interceptors.request.use(
+  config => {
+    return config
+  },
+  err => {
+    return Promise.reject(err)
+  },
+)
+
 apiAxios.interceptors.response.use(
   res => {
 
@@ -23,10 +38,12 @@ apiAxios.interceptors.response.use(
       localStorage.setItem('token', newToken)
     }
 
-    ElMessage({
-      message: res.data.message,
-      type: 'success',
-    })
+    if (res.data.message) {
+      ElMessage({
+        message: res.data.message,
+        type: 'success',
+      })
+    }
     return res.data
   },
   err => {

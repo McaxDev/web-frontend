@@ -12,20 +12,17 @@ apiAxios.get<Album[]>('/gallery/get/albums').then(res => {
 </script>
 
 <template>
-  <div class="reactive-px">
+  <div class="reactive-margin">
 
-    <div class="gallery-banner-outer">
-      <el-image src="/login-bg.jpg" class="gallery-banner-inner">
-
-      </el-image>
+    <div class="gallery-banner">
+      {{ $t('gallery.title') }}
     </div>
 
     <el-row :gutter="15">
       <el-col v-for="album in albums" :key="album.id" :xs="12" :sm="8" :md="6">
         <el-card body-class="card-body">
-          <el-image class="card-image" fit="cover" :src="`${fileAddr}/images/${album.cover}`">
+          <el-image class="card-image" fit="cover" :src="`${fileAddr}/images/${album.cover}`" />
 
-          </el-image>
         </el-card>
       </el-col>
     </el-row>
@@ -37,14 +34,18 @@ apiAxios.get<Album[]>('/gallery/get/albums').then(res => {
   padding: 5px !important;
 }
 .card-image {
+  height: 150px;
+  width: 100%;
   border-radius: 4px;
 }
-.gallery-banner-outer {
+.gallery-banner {
   margin: 20px;
-}
-.gallery-banner-inner {
   height: 200px;
-  width: 100%;
-  border-radius: 10px;
+  background-image: url(/login-bg.jpg);
+  border-radius: 20px;
+  text-align: center;
+  font-size:50px;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
 }
 </style>

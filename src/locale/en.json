@@ -1,19 +1,42 @@
 {
-	"navbar": {
-		"main": "Main",
-		"wiki": "Wiki",
-		"gallery": "Gallery",
-		"guild": "Guild",
-		"bbs": "Forum",
-		"rank": "Rank",
-		"others": "Others",
-		"drawer": "Menu",
-		"cloud": "Cloud",
-		"about": "About",
-		"login": "Login/Signup"
-	},
-	"login": {
-		"account": "Account",
-		"password": "Password"
-	}
+    "navbar": {
+        "main": "Home",
+        "wiki": "Wiki",
+        "gallery": "Gallery",
+        "guild": "Guild",
+        "bbs": "Forum",
+        "rank": "Rankings",
+        "others": "Others",
+        "drawer": "Menu",
+        "cloud": "File Station",
+        "about": "About Us",
+        "login": "Login/Register",
+        "theme": "Theme",
+        "setting": "Settings"
+    },
+    "login": {
+        "brand": "Welcome to Axolotland!",
+        "account": "Account",
+        "password": "Password",
+        "login": "Login",
+        "signup": "Sign Up",
+        "username": "Username",
+        "email": "Email",
+        "emailCode": "Email Verification Code",
+        "sendEmail": "Send Email",
+        "captcha": "Captcha",
+        "retrieve": "Retrieve Password",
+        "newPassword": "New Password"
+    },
+    "wiki": {
+        "drawer": "Table of Contents",
+        "add": "Add Document"
+    },
+    "cloud": {
+        "name": "File Name",
+        "time": "Last Modified",
+        "size": "Size",
+        "open": "Open/Download"
+    }
 }
+

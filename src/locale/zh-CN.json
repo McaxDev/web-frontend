@@ -30,12 +30,23 @@
 	},
 	"wiki": {
 		"drawer": "目录",
-		"add": "新增文档"
+		"add": "新增文档",
+		"edit": "编辑",
+		"delete": "删除",
+		"path": "路径",
+		"title": "标题",
+		"content": "内容"
+	},
+	"gallery": {
+		"title": "画廊"
 	},
 	"cloud": {
 		"name": "文件名",
 		"time": "最后修改时间",
 		"size": "大小",
 		"open": "打开/下载"
+	},
+	"footer": {
+		"ip": "当前IP"
 	}
 }
