@@ -12,7 +12,19 @@
 		"about": "关于我们",
 		"login": "登录/注册",
 		"theme": "主题",
-		"setting": "设置"
+		"setting": "设置",
+		"toolbox": "工具箱",
+		"custom": "自定义",
+		"pickerTitle": "自定义颜色",
+		"selectColor": "请选择颜色",
+		"cancel": "取消",
+		"confirm": "确认",
+		"fonts": "字体",
+		"sans-serif": "无衬线字体",
+		"serif": "衬线字体",
+		"monospace": "等宽字体",
+		"cursive": "装饰字体",
+		"moreFonts": "更多字体"
 	},
 	"login": {
 		"brand": "欢迎加入Axolotland！",
@@ -45,6 +57,16 @@
 		"time": "最后修改时间",
 		"size": "大小",
 		"open": "打开/下载"
+	},
+	"about": {
+		"technologies": "Axolotland依赖的技术",
+		"newtonword": "“如果我看得更远，那是因为我站在巨人的肩膀上。”",
+		"newton": "艾萨克·牛顿",
+		"server": "服务器",
+		"operate": "运维",
+		"frontend": "前端",
+		"backend": "后端",
+		"database": "数据库"
 	},
 	"footer": {
 		"ip": "当前IP"

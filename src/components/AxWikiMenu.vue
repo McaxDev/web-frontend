@@ -2,6 +2,7 @@
 import type {Wiki} from '@/types';
 import { DocumentAdd } from '@element-plus/icons-vue';
 defineProps<{data: Record<string, Wiki[]>}>()
+defineEmits(['openDialog'])
 
 </script>
 
@@ -20,7 +21,7 @@ defineProps<{data: Record<string, Wiki[]>}>()
         </el-menu-item>
       </el-sub-menu>
     </div>
-    <el-menu-item>
+    <el-menu-item @click="$emit('openDialog')">
       {{ $t('wiki.add') }}
       <el-icon>
         <DocumentAdd />

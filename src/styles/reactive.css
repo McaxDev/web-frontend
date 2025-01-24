@@ -1,0 +1,40 @@
+:root {
+  font-size: 16px; 
+}
+
+@media (max-width: 768px) {
+  :root {
+    font-size: 14px; 
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    font-size: 12px; 
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    font-size: 18px; 
+  }
+}
+
+
+@media (min-width: 768px) {
+	.reactive-margin {
+		margin: 0 100px;
+	}
+}
+
+@media (min-width: 992px) {
+	.reactive-margin {
+		margin: 0 150px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.reactive-margin {
+		margin: 0 200px;
+	}
+}

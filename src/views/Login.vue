@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import {useGlobalStore} from '@/stores/global';
+import {useUserStore} from '@/stores/user';
+import {apiAxios} from '@/utils/axios';
+import {getMyInfo} from '@/utils/getMyInfo';
 import {ref} from 'vue';
+import CryptoJS from 'crypto-js';
 
 const global = useGlobalStore()
 
@@ -25,6 +29,18 @@ const retrieveForm = ref({
 })
 
 const action = ref('login')
+
+async function handleLogin() {
+console.log("aaa")
+  apiAxios.post<string>('/account/login', {
+    account: loginForm.value.account,
+    password: CryptoJS.SHA256(loginForm.value.password).toString(),
+  }).then(res => {
+    localStorage.setItem('token', res.data)
+    getMyInfo()
+    console.log(useUserStore().user)
+  }).catch(err => console.log(err))
+}
 </script>
 
 <template>
@@ -50,7 +66,7 @@ const action = ref('login')
               <el-input v-model="loginForm.password" type="password" show-password />
             </el-form-item>
             <el-form-item>
-              <el-button :color="global.theme" :dark="global.isDark">
+              <el-button :color="global.theme" :dark="global.isDark" @click="handleLogin">
                 {{ $t('login.login') }}
               </el-button>
             </el-form-item>

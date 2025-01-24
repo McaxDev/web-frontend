@@ -56,6 +56,7 @@ const router = createRouter({
       meta: {
         title: 'navbar.guild',
         navbar: true,
+        others: true,
       },
     },
     {
@@ -67,6 +68,11 @@ const router = createRouter({
         navbar: true,
         others: true,
       },
+    },
+    {
+      path: '/gallery/:path',
+      name: 'images',
+      component: Gallery,
     },
     {
       path: '/rank',
@@ -92,11 +98,6 @@ const router = createRouter({
       path: '/about',
       name: 'about',
       component: About,
-      meta: {
-        title: 'navbar.about',
-        navbar: true,
-        others: true,
-      },
     },
     {
       path: '/login',

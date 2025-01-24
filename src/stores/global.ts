@@ -8,17 +8,9 @@ export const useGlobalStore = defineStore('global', {
     }
   },
   actions: {
-    toggleDark() {
-      this.isDark = !this.isDark
-      if (this.isDark) {
-        document.documentElement.setAttribute('class', 'dark')
-      } else {
-        document.documentElement.removeAttribute('class')
-      }
-    },
-    toggleTheme(id: string, color: string) {
+    toggleTheme(color: string) {
       this.theme = color
-      document.documentElement.setAttribute('data-theme', id)
+      document.documentElement.style.setProperty('--primary', color)
     }
   }
 })

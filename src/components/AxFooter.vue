@@ -21,6 +21,16 @@ const groups: Group[] = [
     links: [
       ['苦力怕论坛', 'https://klpbbs.com'],
       ['MineBBS', 'https://www.minebbs.com'],
+      ['TATyRealms', 'https://www.tatysmp.love'],
+    ],
+  },
+  {
+    title: '工具',
+    links: [
+      ['ChunkBase', 'https://www.chunkbase.com/apps/seed-map'],
+      ['PCL2', 'https://afdian.com/a/LTCat'],
+      ['HMCL', 'https://hmcl.huangyuhui.net'],
+      ['BakaXL', 'https://www.bakaxl.com'],
     ],
   },
   {
@@ -38,7 +48,7 @@ const groups: Group[] = [
       ['CurseForge', 'https://www.curseforge.com/minecraft'],
       ['Modrinth', 'https://modrinth.com'],
       ['MCPEDL', 'https://mcpedl.com'],
-      ['Spigot', 'https://www.spigotmc.org'],
+      ['MCMOD', 'https://www.mcmod.cn'],
     ],
   },
   {
@@ -74,9 +84,6 @@ apiAxios.get('/geo/get').then(res => {
         <el-link class="beian" href="https://beian.miit.gov.cn/" target="_blank">
           备案号: 豫ICP备2023025148号
         </el-link>
-        <div class="location">
-          {{ location }} {{ $t('footer.ip') }} {{ clientIp }}
-        </div>
       </div>
 
     </div>

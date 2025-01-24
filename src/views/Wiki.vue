@@ -12,20 +12,22 @@ const wikis = ref<Record<string, Wiki>>({})
 const wikiMenu = ref<Record<string, Wiki[]>>({})
 
 const current = ref<Wiki | null>(null)
+
 const drawer = ref(false)
 const dialog = ref(false)
 
-const editing = ref({})
+const editing = ref({
+  path: '',
+  title: '',
+  content: '',
+})
 
 // 获取目录列表
 apiAxios.get<Wiki[]>('/wiki/list').then(res => {
 
   res.data.forEach(item => {
-    wikis.value[item.path] = item
-    if (!wikiMenu.value[item.category]) {
-      wikiMenu.value[item.category] = []
-    }
-    wikiMenu.value[item.category].push(item)
+    wikis.value[item.path] = item;
+    (wikiMenu.value[item.category] ??= []).push(item);
   })
 
   watch(() => route.params.page as string, async (path: string) => {
@@ -37,24 +39,39 @@ apiAxios.get<Wiki[]>('/wiki/list').then(res => {
   }, {immediate: true})
 }).catch(err => console.log(err))
 
+function handleWikiEdit() {
+  if (current.value) {
+    editing.value.path = current.value.path
+    editing.value.title = current.value.title
+    editing.value.content = current.value.content
+  }
+  dialog.value = true
+}
+
+function handleWikiAdd() {
+  editing.value = {
+    path: '',
+    title: '',
+    content: '',
+  }
+  dialog.value = true
+}
+
 </script>
 
 <template>
-  <div class="wiki reactive-margin">
+  <div class="wiki">
 
-    <div class="flex">
+    <ax-wiki-menu class="hidden-xs-only wiki-menu" :data="wikiMenu" @open-dialog="handleWikiAdd" />
 
-      <ax-wiki-menu class="hidden-xs-only wiki-menu" :data="wikiMenu" />
-
-      <div class="wiki-content">
-        <div class="wiki-title flex">
-          <div>{{ current?.title }}</div>
-          <el-button @click="dialog=true" class="ms-auto" circle :icon="Edit" />
-          <el-button @click="dialog=true" circle :icon="Delete" />
-        </div>
-        <div>
-          {{ current?.html }}
-        </div>
+    <div class="wiki-content">
+      <div class="wiki-title">
+        <div>{{ current?.title }}</div>
+        <el-button @click="handleWikiEdit" class="ms-auto" circle :icon="Edit" />
+        <el-button @click="dialog=true" circle :icon="Delete" />
+      </div>
+      <div>
+        {{ current?.html }}
       </div>
 
     </div>
@@ -66,24 +83,24 @@ apiAxios.get<Wiki[]>('/wiki/list').then(res => {
     </el-affix>
 
     <el-drawer v-model="drawer" body-class="p-0" :title="$t('wiki.drawer')" size="60%">
-      <ax-wiki-menu :data="wikiMenu" />
+      <ax-wiki-menu :data="wikiMenu" @open-dialog="handleWikiAdd" />
     </el-drawer>
 
-    <el-dialog v-model="dialog" title="编辑内容">
+    <el-dialog v-model="dialog" :title="$t('wiki.edit')">
       <el-form :model="editing">
         <el-form-item :label="$t('wiki.path')">
-          <el-input>
+          <el-input v-model="editing.path">
 
           </el-input>
         </el-form-item>
         <el-form-item :label="$t('wiki.title')">
-          <el-input>
+          <el-input v-model="editing.title">
 
           </el-input>
         </el-form-item>
 
         <el-form-item :label="$t('wiki.content')">
-          <el-input type="textarea">
+          <el-input type="textarea" v-model="editing.content">
 
           </el-input>
         </el-form-item>
@@ -95,17 +112,20 @@ apiAxios.get<Wiki[]>('/wiki/list').then(res => {
 
 <style scoped>
 .wiki {
-  padding-top:20px;
-  padding-bottom: 20px;
-  border-radius: 10px;
+  height: calc(100vh - 60px);
+  display: flex;
+  overflow: hidden;
 }
 .wiki-menu {
-  flex-grow: 1;
+  width: 300px;
+  overflow-y: auto;
 }
 .wiki-content {
-  flex-grow: 5;
+  flex-grow: 1;
+  overflow-y: auto;
 }
 .wiki-title {
+  display: flex;
   font-weight: bold;
   font-size: 1.5em;
 }

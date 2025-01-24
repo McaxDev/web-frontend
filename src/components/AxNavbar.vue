@@ -1,13 +1,16 @@
 <script lang="ts" setup>
 import {useRoute, useRouter} from 'vue-router';
 import {
-  Setting, Menu, UserFilled, Sunny, Moon, Location, EditPen,
+  Setting, Menu, UserFilled, Sunny, Moon, BrushFilled, Brush, User, EditPen,
 } from '@element-plus/icons-vue';
-import {ref} from 'vue';
-import {languages} from '@/locale';
+import {ref,watch} from 'vue';
+import {languages} from '@/config';
 import {useI18n} from 'vue-i18n';
 import {useUserStore} from '@/stores/user';
 import {useGlobalStore} from '@/stores/global';
+import AxLangIcon from './AxLangIcon.vue';
+import AxToolbox from './AxToolbox.vue';
+import {themes, fontGroups} from '@/config';
 
 const router = useRouter()
 const route = useRoute()
@@ -20,18 +23,28 @@ const navbarItems = allNavItems.filter(item => !item.meta.others)
 const navOthers = allNavItems.filter(item => item.meta.others)
 
 const drawer = ref(false)
-
-const themes = [
-  ['axolotl', '#28ABCE'],
-  ['primary', '#409EFF'],
-  ['success', '#67C23A'],
-  ['warning', '#E6A23C'],
-  ['danger', '#F56C6C'],
-  ['info', '#909399'],
-]
+const colorPicker = ref('#28ABCE')
+const pickerDialog = ref(false)
 
 function toggleLanguage(language: string) {
   i18n.locale.value = language
+}
+
+watch(() => global.isDark, (value) => {
+  if (value) {
+    document.documentElement.setAttribute('class', 'dark')
+  } else {
+    document.documentElement.removeAttribute('class')
+  }
+})
+
+function setCustomColor() {
+  global.toggleTheme(colorPicker.value)
+  pickerDialog.value = false
+}
+
+function setFontFamily(font: string) {
+  document.documentElement.style.setProperty('--font-family', font)
 }
 
 </script>
@@ -66,9 +79,7 @@ function toggleLanguage(language: string) {
 
     <el-sub-menu class="hidden-xs-only hidden-md-and-up" index="others">
       <template #title>{{ $t('navbar.others') }}</template>
-      <el-menu-item
-        v-for="item in navOthers" :key="item.name" :index="item.path"
-      >
+      <el-menu-item v-for="item in navOthers" :key="item.name" :index="item.path">
       {{ $t(item.meta.title as string) }}
       </el-menu-item>
     </el-sub-menu>
@@ -77,23 +88,20 @@ function toggleLanguage(language: string) {
       {{ $t(item.meta.title as string) }}
     </el-menu-item>
 
-    <el-menu-item @click="global.toggleDark" class="navitem-less-px ms-auto">
-      <el-icon>
-        <Moon v-if="global.isDark" />
-        <Sunny v-else />
-      </el-icon>
+    <ax-toolbox class="hidden-xs-only" />
+
+    <el-menu-item class="navitem-less-px ms-auto">
+
+      <el-switch v-model="global.isDark" :active-icon="Moon" :inactive-icon="Sunny" inline-prompt />
     </el-menu-item>
 
     <el-sub-menu class="navlist-no-arrow nav-list" index="language">
       <template #title>
         <el-icon>
-          <Location />
+          <ax-lang-icon />
         </el-icon>
       </template>
-      <el-menu-item
-        v-for="language in languages" :key="language[0]"
-        @click="toggleLanguage(language[0])"
-      >
+      <el-menu-item v-for="language in languages" :key="language[0]" @click="toggleLanguage(language[0])">
         {{language[1]}}
       </el-menu-item>
     </el-sub-menu>
@@ -112,23 +120,49 @@ function toggleLanguage(language: string) {
 
       <el-menu-item v-if="!user.user" index="/login">
         <el-icon>
-          <Setting />
+          <User />
         </el-icon>
         {{ $t('navbar.login') }}
       </el-menu-item>
 
       <el-sub-menu v-if="!user.user" index="theme">
         <template #title>
+          <el-icon>
+            <brush />
+          </el-icon>
           {{ $t('navbar.theme') }}
         </template>
         <el-menu-item
-          v-for="item in themes" :key="item[0]"
-          :style="{color:item[1]}"
-          @click="global.toggleTheme(item[0], item[1])"
+          v-for="item in themes" :key="item"
+          :style="{color:item}"
+          @click="global.toggleTheme(item)"
         >
           <el-icon>
-            <EditPen />
+            <brush-filled />
           </el-icon>
+        </el-menu-item>
+        <el-menu-item @click="pickerDialog=true">
+          {{ $t('navbar.custom') }}
+        </el-menu-item>
+      </el-sub-menu>
+
+      <el-sub-menu index="fonts">
+        <template #title>
+          <el-icon>
+            <edit-pen />
+          </el-icon>
+          {{ $t('navbar.fonts') }}
+        </template>
+        <el-sub-menu v-for="group in fontGroups" :key="group.name" :index="group.name">
+          <template #title>
+            {{ $t(group.name) }}
+          </template>
+          <el-menu-item v-for="font in group.fonts" :key="font" @click="setFontFamily(`${font}, ${group.rollback}`)">
+            {{ font }}
+          </el-menu-item>
+        </el-sub-menu>
+        <el-menu-item>
+          {{ $t('navbar.moreFonts') }}
         </el-menu-item>
       </el-sub-menu>
 
@@ -149,21 +183,27 @@ function toggleLanguage(language: string) {
     body-class="p-0"
     size="50%"
   >
-    <el-menu
-      :default-active="route.path"
-      mode="vertical"
-      router
-      :ellipsis="false"
-    >
+    <el-menu :default-active="route.path" mode="vertical" router :ellipsis="false">
 
-      <el-menu-item
-        v-for="item in allNavItems" :key="item.name" :index="item.path"
-      >
+      <el-menu-item v-for="item in allNavItems" :key="item.name" :index="item.path">
         {{ $t(item.meta.title as string) }}
       </el-menu-item>
 
+      <ax-toolbox />
+
     </el-menu>
   </el-drawer>
+
+  <el-dialog v-model="pickerDialog" :title="$t('navbar.pickerTitle')" width="200">
+    <div class="my-2">
+      <el-text class="mr-2">{{ $t('navbar.selectColor') }}</el-text>
+      <el-color-picker v-model="colorPicker" />
+    </div>
+    <div>
+      <el-button @click="pickerDialog=false">{{ $t('navbar.cancel') }}</el-button>
+      <el-button type="primary" @click="setCustomColor">{{ $t('navbar.confirm') }}</el-button>
+    </div>
+  </el-dialog>
 </template>
 
 <style>
@@ -176,7 +216,7 @@ function toggleLanguage(language: string) {
 
 #el-menu {
   --el-menu-bg-color: var(--nav-bg-color);
-  padding: 0 10px !important;
+  padding: 0 1% !important;
 }
 
 .navlist-no-arrow .el-sub-menu__icon-arrow {

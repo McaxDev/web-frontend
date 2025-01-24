@@ -10,6 +10,10 @@ body {
 	padding: 0 !important;
 }
 
+.m-1 {
+	margin: 5px;
+}
+
 .w-100 {
 	width: 100%;
 }
@@ -24,26 +28,4 @@ body {
 
 .align-center {
 	align-items: center;
-}
-
-.p-0 {
-	padding: 0 !important;
-}
-
-@media (min-width: 768px) {
-	.reactive-margin {
-		margin: 0 100px;
-	}
-}
-
-@media (min-width: 992px) {
-	.reactive-margin {
-		margin: 0 150px;
-	}
-}
-
-@media (min-width: 1200px) {
-	.reactive-margin {
-		margin: 0 200px;
-	}
 }

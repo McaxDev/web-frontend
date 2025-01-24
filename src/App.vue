@@ -2,18 +2,10 @@
 import AxNavbar from './components/AxNavbar.vue';
 import AxFooter from './components/AxFooter.vue';
 import {onMounted} from 'vue';
-import { useUserStore } from './stores/user';
-import {apiAxios} from './utils/axios';
-import type {User} from './types';
-const user = useUserStore()
+import {getMyInfo} from './utils/getMyInfo';
 
 onMounted(() => {
-  const token = localStorage.getItem('token')
-  if (token) {
-    apiAxios.get<User>('/account/get/myinfo').then(res => {
-      user.user = res.data
-    })
-  }
+  getMyInfo()
 })
 </script>
 
