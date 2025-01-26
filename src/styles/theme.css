@@ -4,8 +4,13 @@
 	--nav-active-color: #ff7f7f;
 
 	--font-family: 'Arial, sans-serif';
+	--font-size: 16px;
+	--margin-x: 100px;
+
+	--dialog: 90%;
 
 	font-family: var(--font-family);
+	font-size: var(--font-size);
 	--el-menu-active-color: var(--primary);
 	--el-menu-hover-text-color: var(--primary);
 	--el-color-primary: var(--primary) !important;

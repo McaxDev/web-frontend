@@ -11,6 +11,6 @@ export const useGlobalStore = defineStore('global', {
     toggleTheme(color: string) {
       this.theme = color
       document.documentElement.style.setProperty('--primary', color)
-    }
-  }
+    },
+  },
 })

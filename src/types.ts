@@ -45,6 +45,6 @@ export interface Wiki extends Model {
   path: string,
   title: string,
   category: string,
-  content: string,
+  markdown: string,
   html: string,
 }

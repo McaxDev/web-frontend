@@ -1,8 +1,13 @@
 {
+	"cancel": "取消",
+	"confirm": "确认",
+	"components": {
+		"historyOnline": "24h历史在线"
+	},
 	"navbar": {
 		"main": "主页",
 		"wiki": "文档站",
-		"gallery": "画廊",
+		"gallery": "回忆录",
 		"guild": "公会",
 		"bbs": "论坛",
 		"rank": "排行榜",
@@ -14,17 +19,35 @@
 		"theme": "主题",
 		"setting": "设置",
 		"toolbox": "工具箱",
+		"playerLog": "玩家日志",
 		"custom": "自定义",
 		"pickerTitle": "自定义颜色",
 		"selectColor": "请选择颜色",
-		"cancel": "取消",
-		"confirm": "确认",
 		"fonts": "字体",
 		"sans-serif": "无衬线字体",
 		"serif": "衬线字体",
 		"monospace": "等宽字体",
 		"cursive": "装饰字体",
 		"moreFonts": "更多字体"
+	},
+	"home": {
+		"profile": [
+			{
+				"title": "Axolotland是什么？",
+				"content": "Axolotland是一个非盈利的游戏联机圈子，提供我的世界、饥荒联机版、泰拉瑞亚、星露谷物语等游戏的服务器。"
+			},
+			{
+				"title": "为什么选择Axolotland",
+				"content": "不收取任何费用，没有充值项目，只接受无偿赞助。提倡原版玩法，没有花哨功能。不设置管理员，提倡玩家身份平等。服务器性能好，多人体验流畅。"
+			},
+			{
+				"title": "关于Axolotland",
+				"content": "Axolotland的名称是Axolotland（美西螈，Minecraft的生物）和land的组合词。圈子自2017年建QQ群以来，目前加入者已达700人。"
+			}
+		],
+    "notes": "玩家留言",
+		"online": "当前在线 {online} 玩家",
+		"map": "在线地图"
 	},
 	"login": {
 		"brand": "欢迎加入Axolotland！",
@@ -48,6 +71,22 @@
 		"path": "路径",
 		"title": "标题",
 		"content": "内容"
+	},
+	"forums": {
+		"games": {
+			"title": "游戏交流分区",
+			"main": "MC主服务器",
+			"sc": "MCJE生电服务器",
+			"mod": "MCJE模组服务器",
+			"bedrock": "基岩版服务器",
+			"dst": "饥荒联机版服务器",
+			"terraria": "泰拉瑞亚服务器"
+		},
+		"feedback": {
+			"title": "反馈分区",
+			"bugs": "BUG反馈",
+			"suggestions": "建议反馈"
+		}
 	},
 	"gallery": {
 		"title": "画廊"

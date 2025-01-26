@@ -19,6 +19,8 @@ export const languages: [string, string][] = [
   ["ko", "한국어"],
   ["ja", "日本語"],
   ["es", "Español"],
+  ["pt", "Português"],
+  ["ar", "البرتغالية"],
 ]
 
 interface FontGroup {
@@ -79,4 +81,3 @@ export const fontGroups: FontGroup[] = [
     ],
   },
 ];
-

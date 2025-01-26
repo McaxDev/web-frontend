@@ -77,18 +77,19 @@ function setFontFamily(font: string) {
       {{ $t(item.meta.title as string) }}
     </el-menu-item>
 
-    <el-sub-menu class="hidden-xs-only hidden-md-and-up" index="others">
+    <el-sub-menu class="hidden-xs-only hidden-lg-and-up" index="others">
       <template #title>{{ $t('navbar.others') }}</template>
       <el-menu-item v-for="item in navOthers" :key="item.name" :index="item.path">
       {{ $t(item.meta.title as string) }}
       </el-menu-item>
+      <ax-toolbox index="others-toolbox" />
     </el-sub-menu>
 
-    <el-menu-item class="hidden-sm-and-down" v-for="item in navOthers" :key="item.name" :index="item.path">
+    <el-menu-item class="hidden-md-and-down" v-for="item in navOthers" :key="item.name" :index="item.path">
       {{ $t(item.meta.title as string) }}
     </el-menu-item>
 
-    <ax-toolbox class="hidden-xs-only" />
+    <ax-toolbox class="hidden-md-and-down" index="wide-toolbox" />
 
     <el-menu-item class="navitem-less-px ms-auto">
 
@@ -189,7 +190,7 @@ function setFontFamily(font: string) {
         {{ $t(item.meta.title as string) }}
       </el-menu-item>
 
-      <ax-toolbox />
+      <ax-toolbox index="drawer-toolbox" />
 
     </el-menu>
   </el-drawer>
@@ -200,8 +201,8 @@ function setFontFamily(font: string) {
       <el-color-picker v-model="colorPicker" />
     </div>
     <div>
-      <el-button @click="pickerDialog=false">{{ $t('navbar.cancel') }}</el-button>
-      <el-button type="primary" @click="setCustomColor">{{ $t('navbar.confirm') }}</el-button>
+      <el-button @click="pickerDialog=false">{{ $t('cancel') }}</el-button>
+      <el-button type="primary" @click="setCustomColor">{{ $t('confirm') }}</el-button>
     </div>
   </el-dialog>
 </template>

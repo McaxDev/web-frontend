@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import AxNavbar from './components/AxNavbar.vue';
+import AxNavbar from './navbar/AxNavbar.vue';
 import AxFooter from './components/AxFooter.vue';
 import {onMounted} from 'vue';
 import {getMyInfo} from './utils/getMyInfo';
+import {useGlobalStore} from './stores/global';
+
+const global = useGlobalStore()
 
 onMounted(() => {
   getMyInfo()

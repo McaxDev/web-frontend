@@ -25,15 +25,6 @@ const groups: Group[] = [
     ],
   },
   {
-    title: '工具',
-    links: [
-      ['ChunkBase', 'https://www.chunkbase.com/apps/seed-map'],
-      ['PCL2', 'https://afdian.com/a/LTCat'],
-      ['HMCL', 'https://hmcl.huangyuhui.net'],
-      ['BakaXL', 'https://www.bakaxl.com'],
-    ],
-  },
-  {
     title: '百科',
     links: [
       ['我的世界Wiki', 'https://zh.minecraft.wiki'],
@@ -110,7 +101,7 @@ apiAxios.get('/geo/get').then(res => {
 }
 .group-title {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 1.2rem;
   color: var(--primary);
 }
 .footer-bottom {

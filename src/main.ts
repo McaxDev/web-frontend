@@ -23,6 +23,7 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 import '@/styles/global.css'
 import '@/styles/theme.css'
 import '@/styles/margin-padding-utils.css'
+import '@/styles/override.css'
 import '@/styles/reactive.css'
 
 const app = createApp(App)

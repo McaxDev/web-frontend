@@ -6,105 +6,149 @@ import {watch} from 'vue';
 import {ref} from 'vue';
 import {useRoute} from 'vue-router';
 import { Delete, Edit } from '@element-plus/icons-vue';
+import {useGlobalStore} from '@/stores/global';
 
 const route = useRoute()
-const wikis = ref<Record<string, Wiki>>({})
-const wikiMenu = ref<Record<string, Wiki[]>>({})
+const global = useGlobalStore()
 
-const current = ref<Wiki | null>(null)
-
-const drawer = ref(false)
-const dialog = ref(false)
-
-const editing = ref({
+// 当前wiki的锚点类型
+interface Anchor {
+  id: string,
+  subAnchors: Anchor[],
+}
+// 键是wiki路径，值是wiki对象
+const wikiByPath = ref<Record<string, Wiki>>({})
+// 键是wiki分类，值是对应类型的wiki列表
+const wikiListByCategory = ref<Record<string, Wiki[]>>({})
+// 移动端菜单抽屉开关状态
+const drawerStatus = ref(false)
+// 编辑/新增内容对话框开关状态
+const dialogStatus = ref(false)
+// 编辑/新增内容对话框的内容
+const dialogContent = ref({
+  // 为true代表修改操作，为false代表新增操作
+  isEdit: false,
   path: '',
   title: '',
-  content: '',
+  markdown: '',
 })
+// 当前wiki的锚点列表
+const anchors = ref<Anchor[]>([])
 
 // 获取目录列表
 apiAxios.get<Wiki[]>('/wiki/list').then(res => {
 
+  // 将获取的目录添加到两个对象
   res.data.forEach(item => {
-    wikis.value[item.path] = item;
-    (wikiMenu.value[item.category] ??= []).push(item);
+    wikiByPath.value[item.path] = item;
+    (wikiListByCategory.value[item.category] ??= []).push(item);
   })
 
-  watch(() => route.params.page as string, async (path: string) => {
-    if (!wikis.value[path].html) {
-      const res = await apiAxios.get<Wiki>(`/wiki/get?path=${path}`)
-      wikis.value[path] = res.data
+  // 监听路由变化，获取wiki内容和锚点列表
+  watch(() => route.params.path as string, async (path: string) => {
+    if (!wikiByPath.value[path].html) {
+      const res = await apiAxios.get<{
+        anchors: Anchor[],
+        wiki: Wiki,
+      }>(`/wiki/get?path=${path}`)
+      wikiByPath.value[path] = res.data.wiki
+      anchors.value = res.data.anchors
     }
-    current.value = wikis.value[path]
   }, {immediate: true})
 }).catch(err => console.log(err))
 
-function handleWikiEdit() {
-  if (current.value) {
-    editing.value.path = current.value.path
-    editing.value.title = current.value.title
-    editing.value.content = current.value.content
+// 打开编辑wiki对话框
+function openDialog(isEdit: boolean) {
+  dialogContent.value.isEdit = isEdit
+  const current = wikiByPath.value[route.params.path as string]
+  if (current) {
+    dialogContent.value.path = isEdit ? current.path : ''
+    dialogContent.value.title =  isEdit ? current.title : ''
+    dialogContent.value.markdown = isEdit ? current.markdown : ''
   }
-  dialog.value = true
+  dialogStatus.value = true
 }
 
-function handleWikiAdd() {
-  editing.value = {
-    path: '',
-    title: '',
-    content: '',
+// 执行新增或编辑wiki
+async function doSetWiki() {
+  // 编辑wiki
+  if (dialogContent.value.isEdit) {
+  await apiAxios.post('/wiki/edit', {
+    id: wikiByPath.value[route.params.path as string].id,
+    path: dialogContent.value.path,
+    title: dialogContent.value.title,
+    markdown: dialogContent.value.markdown,
+  })
+  // 新增wiki
+  } else {
+
   }
-  dialog.value = true
 }
+
+async function doDeleteWiki() {}
 
 </script>
 
 <template>
   <div class="wiki">
 
-    <ax-wiki-menu class="hidden-xs-only wiki-menu" :data="wikiMenu" @open-dialog="handleWikiAdd" />
+    <!-- 桌面端目录 -->
+    <ax-wiki-menu class="hidden-xs-only wiki-menu" :data="wikiListByCategory" @open-dialog="openDialog(false)" />
 
-    <div class="wiki-content">
-      <div class="wiki-title">
-        <div>{{ current?.title }}</div>
-        <el-button @click="handleWikiEdit" class="ms-auto" circle :icon="Edit" />
-        <el-button @click="dialog=true" circle :icon="Delete" />
+    <!-- 正文 -->
+    <div class="wiki-main">
+      <div class="wiki-main-title">
+        <div>{{ wikiByPath[$route.params.path as string]?.title }}</div>
+        <el-button @click="openDialog(true)" class="ms-auto" circle :icon="Edit" />
+        <el-button @click="doDeleteWiki" circle :icon="Delete" />
       </div>
-      <div>
-        {{ current?.html }}
+      <div class="wiki-main-content">
+        {{ wikiByPath[$route.params.path as string]?.html }}
       </div>
+
+      <!-- 移动端目录按钮 -->
+      <el-button @click="drawerStatus = !drawerStatus" class="affix-right hidden-sm-and-up">
+      </el-button>
 
     </div>
 
-    <el-affix position="bottom" offset="100" class="affix-right hidden-sm-and-up">
-      <el-button @click="drawer = !drawer">
-        {{ $t('wiki.drawer') }}
-      </el-button>
-    </el-affix>
+    <!-- 锚点列表 -->
+    <div class="wiki-anchor hidden-md-and-down">
+      <el-anchor>
+        <el-anchor-link v-for="anchor in anchors" :key="anchor.id" :href="`#${anchor.id}`">
+          {{ anchor.id }}
+          <template v-if="anchor.subAnchors" #sub-link>
+            <el-anchor-link v-for="subAnchor in anchor.subAnchors" :key="subAnchor.id" :href="`#${subAnchor.id}`">
+              {{ subAnchor.id }}
+            </el-anchor-link>
+          </template>
+        </el-anchor-link>
+      </el-anchor>
+    </div>
 
-    <el-drawer v-model="drawer" body-class="p-0" :title="$t('wiki.drawer')" size="60%">
-      <ax-wiki-menu :data="wikiMenu" @open-dialog="handleWikiAdd" />
+    <!-- 移动端目录 -->
+    <el-drawer v-model="drawerStatus" body-class="p-0" :title="$t('wiki.drawer')" size="60%">
+      <ax-wiki-menu :data="wikiListByCategory" @open-dialog="openDialog(false)" />
     </el-drawer>
 
-    <el-dialog v-model="dialog" :title="$t('wiki.edit')">
-      <el-form :model="editing">
+    <!-- 添加/修改文档对话框 -->
+    <el-dialog width="var(--dialog-width)" v-model="dialogStatus" :title="$t('wiki.edit')">
+      <el-form :model="dialogContent">
         <el-form-item :label="$t('wiki.path')">
-          <el-input v-model="editing.path">
-
-          </el-input>
+          <el-input v-model="dialogContent.path" />
         </el-form-item>
         <el-form-item :label="$t('wiki.title')">
-          <el-input v-model="editing.title">
-
-          </el-input>
+          <el-input v-model="dialogContent.title" />
         </el-form-item>
-
         <el-form-item :label="$t('wiki.content')">
-          <el-input type="textarea" v-model="editing.content">
-
-          </el-input>
+          <el-input type="textarea" v-model="dialogContent.markdown" />
         </el-form-item>
       </el-form>
+
+      <template #footer>
+        <el-button @click="dialogStatus = false">{{ $t('cancel') }}</el-button>
+        <el-button :color="global.theme" @click="doSetWiki">{{ $t('confirm') }}</el-button>
+      </template>
     </el-dialog>
 
   </div>
@@ -120,14 +164,23 @@ function handleWikiAdd() {
   width: 300px;
   overflow-y: auto;
 }
-.wiki-content {
-  flex-grow: 1;
+.wiki-main {
+  flex-grow: 2;
   overflow-y: auto;
 }
-.wiki-title {
+.wiki-main-title {
   display: flex;
   font-weight: bold;
   font-size: 1.5em;
+  margin: 20px;
+  color: var(--primary);
+}
+.wiki-main-content {
+  margin: 15px;
+}
+.wiki-anchor {
+  flex-grow: 1;
+  padding: 20px;
 }
 .affix-right {
   text-align: end;

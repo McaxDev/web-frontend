@@ -2,16 +2,12 @@ body {
 	margin: 0;
 }
 
+.decoration-none {
+	text-decoration: none;
+}
+
 .ms-auto {
 	margin-left: auto !important;
-}
-
-.p-0 {
-	padding: 0 !important;
-}
-
-.m-1 {
-	margin: 5px;
 }
 
 .w-100 {
