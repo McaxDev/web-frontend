@@ -1,97 +1,36 @@
-<script setup lang="ts">
-import { ElRow, ElCol, ElCard, ElMenu, ElMenuItem } from 'element-plus'
-import {ref} from 'vue';
-
-const activeIndex = ref('1')
-
-</script>
-
 <template>
-  <div id="app">
-    <div class="container">
-      <el-row class="main-layout">
-        <!-- Sidebar -->
-        <el-col :span="5" class="sidebar">
-          <el-menu :default-active="activeIndex" class="menu">
-            <el-menu-item index="1">侧边栏</el-menu-item>
-            <el-menu-item index="2">导航</el-menu-item>
-            <el-menu-item index="3">更多</el-menu-item>
-          </el-menu>
-        </el-col>
+  <div>
+    <el-button @click="show = !show">Click Me</el-button>
 
-        <!-- Main Content -->
-        <el-col :span="19" class="content">
-          <el-card class="card" >
-            <p>欢迎你加入论坛！</p>
-          </el-card>
-
-          <el-row class="forum-list">
-            <el-col :span="12">
-              <el-card class="forum-item">
-                <p>论坛1</p>
-              </el-card>
-            </el-col>
-            <el-col :span="12">
-              <el-card class="forum-item">
-                <p>论坛2</p>
-              </el-card>
-            </el-col>
-          </el-row>
-
-          <el-row class="forum-list">
-            <el-col :span="12">
-              <el-card class="forum-item">
-                <p>论坛3</p>
-              </el-card>
-            </el-col>
-            <el-col :span="12">
-              <el-card class="forum-item">
-                <p>论坛4</p>
-              </el-card>
-            </el-col>
-          </el-row>
-
-          <!-- Forum Status -->
-          <el-card class="forum-status">
-            <p>论坛状态</p>
-          </el-card>
-        </el-col>
-      </el-row>
+    <div style="display: flex; margin-top: 20px; height: 100px">
+      <transition name="el-fade-in-linear">
+        <div v-show="show" class="transition-box">.el-fade-in-linear</div>
+      </transition>
+      <transition name="el-fade-in">
+        <div v-show="show" class="transition-box">.el-fade-in</div>
+      </transition>
     </div>
   </div>
 </template>
 
-<style scoped>
-.container {
-  padding: 20px;
-}
+<script lang="ts" setup>
+import { ref } from 'vue'
 
-.main-layout {
-  display: flex;
-  justify-content: space-between;
-}
+const show = ref(true)
+</script>
 
-.sidebar {
-  background-color: #f0f0f0;
-  padding: 20px;
-}
-
-.content {
-  background-color: #fff;
-  padding: 20px;
-}
-
-.forum-list {
-  margin-bottom: 20px;
-}
-
-.forum-item {
+<style>
+.transition-box {
   margin-bottom: 10px;
-  background-color: #f9f9f9;
-}
-
-.forum-status {
-  margin-top: 20px;
-  background-color: #e0f7fa;
+  width: 200px;
+  height: 100px;
+  border-radius: 4px;
+  background-color: #409eff;
+  text-align: center;
+  color: #fff;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  margin-right: 20px;
 }
 </style>
+

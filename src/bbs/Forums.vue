@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {forumGroups} from './ForumGroups';
 import AxForumMenu from './AxForumMenu.vue';
+import { DArrowRight } from '@element-plus/icons-vue';
 
 </script>
 
@@ -16,14 +17,17 @@ import AxForumMenu from './AxForumMenu.vue';
             {{ $t(forumGroup.name) }}
           </forums-group-title>
           <el-row>
-            <el-col class="forums-col" :sm="12" :lg="8" v-for="forum in forumGroup.forums" :key="forum.name">
+            <el-col class="p-1" :sm="12" :lg="8" v-for="forum in forumGroup.forums" :key="forum.name">
               <el-card body-class="forums-card" :body-style="{ backgroundImage: `url(${forum.image})`}">
                 <card-content>
                   <card-title>
                     {{ $t(forum.name) }}
                   </card-title>
-                  <card-subtitle>
+                  <card-subtitle class="flex">
                     {{ $t(forum.subtitle) }}
+                    <el-icon class="ms-auto">
+                      <d-arrow-right />
+                    </el-icon>
                   </card-subtitle>
                 </card-content>
               </el-card>
@@ -35,7 +39,12 @@ import AxForumMenu from './AxForumMenu.vue';
 
       <forums-info>
         <el-card>
-          <el-descriptions title="统计信息" direction="vertical">
+          <el-descriptions direction="vertical">
+            <template #title>
+              <css-text-title>
+                统计信息
+              </css-text-title>
+            </template>
             <el-descriptions-item label="注册用户">0</el-descriptions-item>
             <el-descriptions-item label="帖子总数">0</el-descriptions-item>
 
@@ -81,9 +90,6 @@ forums-group-title {
 }
 card-title {
   font-size: 20px;
-}
-.forums-col {
-  padding: 5px;
 }
 .forums-card {
   color: white;

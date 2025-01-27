@@ -46,6 +46,12 @@ body {
 	font-size: 20px;
 	color: var(--primary);
 }
+
+css-text-title {
+	font-weight: bold;
+	font-size: 20px;
+	color: var(--primary);
+}
 	
 .reactive-margin {
 	margin: 0 var(--margin-x) 0;
@@ -57,4 +63,11 @@ body {
 
 .el-text {
 	font-size: 1rem;
+}
+
+.ms-auto {
+	margin-left: auto;
+}
+.flex {
+	display: flex;
 }

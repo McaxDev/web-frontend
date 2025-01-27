@@ -64,6 +64,7 @@ const router = createRouter({
       meta: {
         title: 'navbar.guild',
         navbar: true,
+        others: true,
       },
     },
     {

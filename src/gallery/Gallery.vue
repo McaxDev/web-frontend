@@ -22,7 +22,7 @@ apiAxios.get<Album[]>('/gallery/get/albums').then(res => {
     <el-row :gutter="15">
       <el-col v-for="album in albums" :key="album.id" :xs="12" :sm="8" :md="6">
           <el-card body-class="p-0" @click="$router.push(`/gallery/${album.path}`)">
-            <el-image class="card-image transition-box" fit="cover" :src="`${fileAddr}/images/${album.cover}`" />
+            <el-image class="card-image" fit="cover" :src="`${fileAddr}/images/${album.cover}`" />
           </el-card>
       </el-col>
     </el-row>

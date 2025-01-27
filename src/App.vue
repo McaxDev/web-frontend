@@ -3,9 +3,6 @@ import AxNavbar from './navbar/AxNavbar.vue';
 import AxFooter from './components/AxFooter.vue';
 import {onMounted} from 'vue';
 import {getMyInfo} from './utils/getMyInfo';
-import {useGlobalStore} from './stores/global';
-
-const global = useGlobalStore()
 
 onMounted(() => {
   getMyInfo()
@@ -17,7 +14,9 @@ onMounted(() => {
     <ax-navbar />
   </header>
   <main>
-    <router-view />
+    <transition name="el-fade-in-linear">
+      <router-view />
+    </transition>
   </main>
   <footer>
     <ax-footer />

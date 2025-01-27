@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {useRoute, useRouter} from 'vue-router';
 import {
-  Setting, Menu, UserFilled, Sunny, Moon, BrushFilled, Brush, User, EditPen,
+  Setting, Menu, UserFilled, Sunny, Moon, BrushFilled, Brush, User, EditPen, Search,
 } from '@element-plus/icons-vue';
 import {ref,watch} from 'vue';
 import {languages} from '@/config';
@@ -25,6 +25,7 @@ const navOthers = allNavItems.filter(item => item.meta.others)
 const drawer = ref(false)
 const colorPicker = ref('#28ABCE')
 const pickerDialog = ref(false)
+const search = ref('')
 
 function toggleLanguage(language: string) {
   i18n.locale.value = language
@@ -90,6 +91,10 @@ function setFontFamily(font: string) {
     </el-menu-item>
 
     <ax-toolbox class="hidden-md-and-down" index="wide-toolbox" />
+
+    <el-menu-item class="hidden-xs-only">
+      <el-input :suffix-icon="Search" v-model="search" />
+    </el-menu-item>
 
     <el-menu-item class="navitem-less-px ms-auto">
 
@@ -191,6 +196,10 @@ function setFontFamily(font: string) {
       </el-menu-item>
 
       <ax-toolbox index="drawer-toolbox" />
+
+      <el-menu-item>
+        <el-input :suffix-icon="Search" v-model="search" />
+      </el-menu-item>
 
     </el-menu>
   </el-drawer>
