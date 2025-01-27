@@ -215,6 +215,10 @@ function setFontFamily(font: string) {
   align-items: center;
 }
 
+.ms-auto {
+  margin-left: auto !important;
+}
+
 #el-menu {
   --el-menu-bg-color: var(--nav-bg-color);
   padding: 0 1% !important;

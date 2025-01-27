@@ -28,7 +28,7 @@ apiAxios.get<Image[]>(`/gallery/get/images?path=${route.params.path}`).then(res 
         </el-card>
       </el-col>
       <el-col v-for="image in images" :key="image.id" :xs="12" :sm="8" :md="6">
-        <el-card body-class="card-body">
+        <el-card body-class="p-0">
           <el-image class="card-image" fit="cover" :src="`${fileAddr}/images/${image.filename}`" />
         </el-card>
       </el-col>
@@ -38,9 +38,6 @@ apiAxios.get<Image[]>(`/gallery/get/images?path=${route.params.path}`).then(res 
 </template>
 
 <style>
-.card-body {
-  padding: 5px !important;
-}
 .card-image {
   height: 150px;
   width: 100%;

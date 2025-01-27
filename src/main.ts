@@ -20,11 +20,8 @@ import es from '@/locale/es.json'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/display.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
-import '@/styles/global.css'
-import '@/styles/theme.css'
+import '@/styles/styles.css'
 import '@/styles/margin-padding-utils.css'
-import '@/styles/override.css'
-import '@/styles/reactive.css'
 
 const app = createApp(App)
 const i18n = createI18n({

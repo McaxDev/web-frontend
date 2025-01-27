@@ -3,8 +3,6 @@ import {fileAddr} from '@/config';
 import type {Image} from '@/types';
 import {apiAxios} from '@/utils/axios';
 import {ref} from 'vue';
-import AxHistoryOnline from '@/components/AxHistoryOnline.vue';
-
 
 const carousel = ref<Image[]>([])
 

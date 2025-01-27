@@ -17,7 +17,7 @@ type Link = [
 
 const groups: Group[] = [
   {
-    title: '友情链接',
+    title: 'footer.friendLinks',
     links: [
       ['苦力怕论坛', 'https://klpbbs.com'],
       ['MineBBS', 'https://www.minebbs.com'],
@@ -25,7 +25,7 @@ const groups: Group[] = [
     ],
   },
   {
-    title: '百科',
+    title: 'footer.wikis',
     links: [
       ['我的世界Wiki', 'https://zh.minecraft.wiki'],
       ['饥荒Wiki', 'https://dontstarve.huijiwiki.com'],
@@ -34,7 +34,7 @@ const groups: Group[] = [
     ],
   },
   {
-    title: '资源下载',
+    title: 'footer.resources',
     links: [
       ['CurseForge', 'https://www.curseforge.com/minecraft'],
       ['Modrinth', 'https://modrinth.com'],
@@ -43,7 +43,7 @@ const groups: Group[] = [
     ],
   },
   {
-    title: '联系我们',
+    title: 'footer.contacts',
     links: [
       ['QQ群: 514928673', 'http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=U6L_LJSXXAA4GKbdA3C4dsWYi3L0iAPE&authKey=yWN2Vp2lymU9xrjU%2B4ajk78JZsW2Zh4nwiTga0DvXf7B4ISNhn5isSmd0Qajj%2B1E&noverify=0&group_code=514928673'],
       ['哔哩哔哩', 'https://b23.tv/yMqpypq'],
@@ -64,7 +64,7 @@ apiAxios.get('/geo/get').then(res => {
 
       <div class="group-container">
         <div class="group" v-for="(group, index) in groups" :key="index">
-          <div class="group-title">{{group.title}}</div>
+          <div class="text-title">{{ $t(group.title) }}</div>
           <el-link v-for="link in group.links" :key="link[0]" :href="link[1]">
             {{ link[0] }}
           </el-link>

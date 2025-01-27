@@ -36,3 +36,9 @@ import { Link } from '@element-plus/icons-vue';
     </el-menu-item>
   </el-sub-menu>
 </template>
+
+<style>
+.decoration-none {
+  text-decoration: none;
+}
+</style>

@@ -1,42 +1,118 @@
 {
-    "navbar": {
-        "main": "Home",
-        "wiki": "Wiki",
-        "gallery": "Gallery",
-        "guild": "Guild",
-        "bbs": "Forum",
-        "rank": "Rankings",
-        "others": "Others",
-        "drawer": "Menu",
-        "cloud": "File Station",
-        "about": "About Us",
-        "login": "Login/Register",
-        "theme": "Theme",
-        "setting": "Settings"
-    },
-    "login": {
-        "brand": "Welcome to Axolotland!",
-        "account": "Account",
-        "password": "Password",
-        "login": "Login",
-        "signup": "Sign Up",
-        "username": "Username",
-        "email": "Email",
-        "emailCode": "Email Verification Code",
-        "sendEmail": "Send Email",
-        "captcha": "Captcha",
-        "retrieve": "Retrieve Password",
-        "newPassword": "New Password"
-    },
-    "wiki": {
-        "drawer": "Table of Contents",
-        "add": "Add Document"
-    },
-    "cloud": {
-        "name": "File Name",
-        "time": "Last Modified",
-        "size": "Size",
-        "open": "Open/Download"
-    }
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "components": {
+                "historyOnline": "24h History Online"
+        },
+        "navbar": {
+                "main": "Home",
+                "wiki": "Documentation",
+                "gallery": "Memoirs",
+                "guild": "Guild",
+                "bbs": "Forum",
+                "rank": "Leaderboard",
+                "others": "Others",
+                "drawer": "Menu",
+                "cloud": "File Station",
+                "about": "About Us",
+                "login": "Login/Sign Up",
+                "theme": "Theme",
+                "setting": "Settings",
+                "toolbox": "Toolbox",
+                "playerLog": "Player Log",
+                "custom": "Custom",
+                "pickerTitle": "Custom Color",
+                "selectColor": "Select a color",
+                "fonts": "Fonts",
+                "sans-serif": "Sans-serif",
+                "serif": "Serif",
+                "monospace": "Monospace",
+                "cursive": "Cursive",
+                "moreFonts": "More Fonts"
+        },
+        "home": {
+                "profile": [
+                        {
+                                "title": "What is Axolotland?",
+                                "content": "Axolotland is a non-profit gaming community offering servers for games like Minecraft, Don't Starve Together, Terraria, Stardew Valley, and more."
+                        },
+                        {
+                                "title": "Why Choose Axolotland?",
+                                "content": "We charge no fees, have no top-up features, and only accept voluntary donations. We encourage a vanilla gameplay experience without flashy features. There are no administrators; we advocate for equal player status. The server performance is great for smooth multiplayer experiences."
+                        },
+                        {
+                                "title": "About Axolotland",
+                                "content": "The name Axolotland is a combination of Axolotls (a species from Minecraft) and land. Since the creation of the QQ group in 2017, the community has grown to over 700 members."
+                        }
+                ],
+                "notes": "Player Messages",
+                "online": "Currently {online} players online",
+                "map": "Online Map"
+        },
+        "login": {
+                "brand": "Welcome to Axolotland!",
+                "account": "Account",
+                "password": "Password",
+                "login": "Login",
+                "signup": "Sign Up",
+                "username": "Username",
+                "email": "Email",
+                "emailCode": "Email Code",
+                "sendEmail": "Send Email",
+                "captcha": "Captcha",
+                "retrieve": "Retrieve Password",
+                "newPassword": "New Password"
+        },
+        "wiki": {
+                "drawer": "Table of Contents",
+                "add": "Add New Document",
+                "edit": "Edit",
+                "delete": "Delete",
+                "path": "Path",
+                "title": "Title",
+                "content": "Content"
+        },
+        "forums": {
+                "games": {
+                        "title": "Game Discussion Section",
+                        "main": "Main MC Server",
+                        "sc": "MCJE Survival Server",
+                        "mod": "MCJE Modded Server",
+                        "bedrock": "Bedrock Edition Server",
+                        "dst": "Don't Starve Together Server",
+                        "terraria": "Terraria Server"
+                },
+                "feedback": {
+                        "title": "Feedback Section",
+                        "bugs": "Bug Feedback",
+                        "suggestions": "Suggestion Feedback"
+                }
+        },
+        "gallery": {
+                "title": "Gallery"
+        },
+        "cloud": {
+                "name": "File Name",
+                "time": "Last Modified",
+                "size": "Size",
+                "open": "Open/Download"
+        },
+        "about": {
+                "technologies": "Technologies Used by Axolotland",
+                "newtonword": "\"If I have seen further, it is by standing on the shoulders of giants.\"",
+                "newton": "Isaac Newton",
+                "server": "Server",
+                "operate": "Operations",
+                "frontend": "Frontend",
+                "backend": "Backend",
+                "database": "Database"
+        },
+        "footer": {
+                "ip": "Current IP",
+                "friendLinks": "Friend Links",
+                "wikis": "Wiki",
+                "resources": "Resources Download",
+                "contacts": "Contact Us",
+                "icp": "ICP Number: 豫ICP备2023025148号"
+        }
 }
-

@@ -34,18 +34,19 @@ function formatFileSize(bytes: number): string {
 </script>
 
 <template>
-  <el-table :data="files" class="cloud">
-    <el-table-column prop="name" :label="$t('cloud.name')" />
-    <el-table-column prop="mtime" :label="$t('cloud.time')" />
-    <el-table-column prop="fmtSize" :label="$t('cloud.size')" />
-    <el-table-column :label="$t('cloud.open')">
-    </el-table-column>
-  </el-table>
+  <cloud-container class="reactive-margin">
+    <el-table :data="files" height="250" width="500" class="cloud-table">
+      <el-table-column prop="name" :label="$t('cloud.name')" />
+      <el-table-column prop="mtime" :label="$t('cloud.time')" />
+      <el-table-column prop="fmtSize" :label="$t('cloud.size')" />
+      <el-table-column :label="$t('cloud.open')">
+      </el-table-column>
+    </el-table>
+  </cloud-container>
 </template>
 
 <style scoped>
-.cloud {
-  padding-top: 100px;
-  width: 600px;
+.cloud-table {
+  width: 400px;
 }
 </style>

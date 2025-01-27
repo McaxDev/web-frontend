@@ -6,5 +6,6 @@ export interface ForumGroup {
 export interface Forum {
   path: string,
   name: string,
+  subtitle: string,
   image: string,
 }

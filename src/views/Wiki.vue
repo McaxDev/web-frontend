@@ -90,30 +90,30 @@ async function doDeleteWiki() {}
 </script>
 
 <template>
-  <div class="wiki">
+  <wiki-container>
 
     <!-- 桌面端目录 -->
     <ax-wiki-menu class="hidden-xs-only wiki-menu" :data="wikiListByCategory" @open-dialog="openDialog(false)" />
 
     <!-- 正文 -->
-    <div class="wiki-main">
-      <div class="wiki-main-title">
+    <wiki-main>
+      <wiki-main-title>
         <div>{{ wikiByPath[$route.params.path as string]?.title }}</div>
         <el-button @click="openDialog(true)" class="ms-auto" circle :icon="Edit" />
         <el-button @click="doDeleteWiki" circle :icon="Delete" />
-      </div>
-      <div class="wiki-main-content">
+      </wiki-main-title>
+      <wiki-main-content>
         {{ wikiByPath[$route.params.path as string]?.html }}
-      </div>
+      </wiki-main-content>
 
       <!-- 移动端目录按钮 -->
       <el-button @click="drawerStatus = !drawerStatus" class="affix-right hidden-sm-and-up">
       </el-button>
 
-    </div>
+    </wiki-main>
 
     <!-- 锚点列表 -->
-    <div class="wiki-anchor hidden-md-and-down">
+    <wiki-anchor class="hidden-md-and-down">
       <el-anchor>
         <el-anchor-link v-for="anchor in anchors" :key="anchor.id" :href="`#${anchor.id}`">
           {{ anchor.id }}
@@ -124,7 +124,7 @@ async function doDeleteWiki() {}
           </template>
         </el-anchor-link>
       </el-anchor>
-    </div>
+    </wiki-anchor>
 
     <!-- 移动端目录 -->
     <el-drawer v-model="drawerStatus" body-class="p-0" :title="$t('wiki.drawer')" size="60%">
@@ -151,34 +151,34 @@ async function doDeleteWiki() {}
       </template>
     </el-dialog>
 
-  </div>
+  </wiki-container>
 </template>
 
 <style scoped>
-.wiki {
+wiki-container {
   height: calc(100vh - 60px);
   display: flex;
   overflow: hidden;
 }
 .wiki-menu {
-  width: 300px;
+  width: 200px;
   overflow-y: auto;
 }
-.wiki-main {
+wiki-main {
   flex-grow: 2;
   overflow-y: auto;
 }
-.wiki-main-title {
+wiki-main-title {
   display: flex;
   font-weight: bold;
   font-size: 1.5em;
   margin: 20px;
   color: var(--primary);
 }
-.wiki-main-content {
+wiki-main-content {
   margin: 15px;
 }
-.wiki-anchor {
+wiki-anchor {
   flex-grow: 1;
   padding: 20px;
 }
