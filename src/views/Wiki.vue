@@ -46,7 +46,7 @@ apiAxios.get<Wiki[]>('/wiki/list').then(res => {
 
   // 监听路由变化，获取wiki内容和锚点列表
   watch(() => route.params.path as string, async (path: string) => {
-    if (!wikiByPath.value[path].html) {
+    if (!wikiByPath.value[path]?.html && path) {
       const res = await apiAxios.get<{
         anchors: Anchor[],
         wiki: Wiki,
@@ -90,30 +90,28 @@ async function doDeleteWiki() {}
 </script>
 
 <template>
-  <wiki-container>
+  <div class="wiki-container">
 
     <!-- 桌面端目录 -->
     <ax-wiki-menu class="hidden-xs-only wiki-menu" :data="wikiListByCategory" @open-dialog="openDialog(false)" />
 
     <!-- 正文 -->
-    <wiki-main>
-      <wiki-main-title>
+    <section class="wiki-main">
+      <header class="wiki-title">
         <div>{{ wikiByPath[$route.params.path as string]?.title }}</div>
         <el-button @click="openDialog(true)" class="ms-auto" circle :icon="Edit" />
         <el-button @click="doDeleteWiki" circle :icon="Delete" />
-      </wiki-main-title>
-      <wiki-main-content>
-        {{ wikiByPath[$route.params.path as string]?.html }}
-      </wiki-main-content>
+      </header>
+      <article class="wiki-content" v-html="wikiByPath[$route.params.path as string]?.html" />
 
       <!-- 移动端目录按钮 -->
       <el-button @click="drawerStatus = !drawerStatus" class="affix-right hidden-sm-and-up">
       </el-button>
 
-    </wiki-main>
+    </section>
 
     <!-- 锚点列表 -->
-    <wiki-anchor class="hidden-md-and-down">
+    <section class="wiki-anchor hidden-md-and-down">
       <el-anchor>
         <el-anchor-link v-for="anchor in anchors" :key="anchor.id" :href="`#${anchor.id}`">
           {{ anchor.id }}
@@ -124,7 +122,7 @@ async function doDeleteWiki() {}
           </template>
         </el-anchor-link>
       </el-anchor>
-    </wiki-anchor>
+    </section>
 
     <!-- 移动端目录 -->
     <el-drawer v-model="drawerStatus" body-class="p-0" :title="$t('wiki.drawer')" size="60%">
@@ -151,11 +149,11 @@ async function doDeleteWiki() {}
       </template>
     </el-dialog>
 
-  </wiki-container>
+  </div>
 </template>
 
 <style scoped>
-wiki-container {
+.wiki-container {
   height: calc(100vh - 60px);
   display: flex;
   overflow: hidden;
@@ -164,21 +162,21 @@ wiki-container {
   width: 200px;
   overflow-y: auto;
 }
-wiki-main {
+.wiki-main {
   flex-grow: 2;
   overflow-y: auto;
 }
-wiki-main-title {
+.wiki-title {
   display: flex;
   font-weight: bold;
   font-size: 1.5em;
   margin: 20px;
   color: var(--primary);
 }
-wiki-main-content {
+.wiki-content {
   margin: 15px;
 }
-wiki-anchor {
+.wiki-anchor {
   flex-grow: 1;
   padding: 20px;
 }

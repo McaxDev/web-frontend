@@ -14,9 +14,11 @@ onMounted(() => {
     <ax-navbar />
   </header>
   <main>
-    <transition name="el-fade-in-linear">
-      <router-view />
-    </transition>
+    <router-view v-slot="{ Component }">
+      <transition class="el-fade-in-linear">
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </main>
   <footer>
     <ax-footer />

@@ -47,7 +47,7 @@ body {
 	color: var(--primary);
 }
 
-css-text-title {
+.text-title {
 	font-weight: bold;
 	font-size: 20px;
 	color: var(--primary);

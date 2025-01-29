@@ -6,59 +6,59 @@ import { DArrowRight } from '@element-plus/icons-vue';
 </script>
 
 <template>
-  <forums-container>
+  <div class="forums-container">
 
     <ax-forum-menu class="forum-menu hidden-xs-only" />
 
-    <forums-main>
-      <forums-groups>
-        <forums-group v-for="forumGroup in forumGroups" :key="forumGroup.name">
-          <forums-group-title class="text-title">
+    <section class="forums-main">
+      <section class="forums-groups">
+        <section v-for="forumGroup in forumGroups" :key="forumGroup.name">
+          <header class="forums-title text-title">
             {{ $t(forumGroup.name) }}
-          </forums-group-title>
+          </header>
           <el-row>
             <el-col class="p-1" :sm="12" :lg="8" v-for="forum in forumGroup.forums" :key="forum.name">
               <el-card body-class="forums-card" :body-style="{ backgroundImage: `url(${forum.image})`}">
-                <card-content>
-                  <card-title>
+                <div class="card-content">
+                  <div class="card-title">
                     {{ $t(forum.name) }}
-                  </card-title>
-                  <card-subtitle class="flex">
+                  </div>
+                  <div class="flex">
                     {{ $t(forum.subtitle) }}
                     <el-icon class="ms-auto">
                       <d-arrow-right />
                     </el-icon>
-                  </card-subtitle>
-                </card-content>
+                  </div>
+                </div>
               </el-card>
             </el-col>
           </el-row>
 
-        </forums-group>
-      </forums-groups>
+        </section>
+      </section>
 
-      <forums-info>
+      <section class="forums-info">
         <el-card>
           <el-descriptions direction="vertical">
             <template #title>
-              <css-text-title>
+              <div class="text-title">
                 统计信息
-              </css-text-title>
+              </div>
             </template>
             <el-descriptions-item label="注册用户">0</el-descriptions-item>
             <el-descriptions-item label="帖子总数">0</el-descriptions-item>
 
           </el-descriptions>
         </el-card>
-      </forums-info>
-    </forums-main>
+      </section>
+    </section>
 
-  </forums-container>
+  </div>
 </template>
 
 <style>
 
-forums-container {
+.forums-container {
   height: calc(100vh - 60px);
   display: flex;
   overflow: hidden;
@@ -68,27 +68,27 @@ forums-container {
   flex-shrink: 0.5;
   overflow-y: auto;
 }
-forums-main {
+.forums-main {
   display: flex;
   flex-wrap: wrap;
   overflow-y: auto;
   flex-grow: 1;
   padding: 10px;
 }
-forums-groups {
+.forums-groups {
   box-sizing: border-box;
   padding: 10px;
 }
-forums-info {
+.forums-info {
   box-sizing: border-box;
   padding: 10px;
   flex-grow: 1;
 }
-forums-group-title {
+.forums-title {
   padding-left: 20px;
   line-height: 40px;
 }
-card-title {
+.card-title {
   font-size: 20px;
 }
 .forums-card {
@@ -112,17 +112,17 @@ card-title {
   z-index: 1;  /* 确保遮罩层在背景图上方 */
 }
 
-card-content {
+.card-content {
   z-index: 2;
   display: flex;
   flex-direction: column;
 }
 
 @media (min-width: 1200px) {
-  forums-groups {
+  .forums-groups {
     flex-basis: 75%;
   }
-  forums-info {
+  .forums-info {
     flex-basis: 25%;
   }
 }
