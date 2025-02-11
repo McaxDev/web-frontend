@@ -12,14 +12,27 @@ export interface User extends Model {
  tempCoin: number,
  permCoin: number,
  email: string,
- phone: string,
- qq: string,
- bedrockName: string,
- javaName: string,
+ phone: string | null,
+ qq: string | null,
+ bedrockName: string | null,
+ javaName: string | null,
  guildRole: number,
  donation: number,
  exp: number,
  level: number,
+ strMeta: Record<string, string>,
+ boolMeta: Record<string, boolean>,
+ guild: Guild | null,
+}
+
+export interface Guild extends Model {
+  name: string,
+  number: number,
+  logo: string,
+  profile: string,
+  notice: string,
+  money: number,
+  level: string,
 }
 
 export interface Album extends Model {

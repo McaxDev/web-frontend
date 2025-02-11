@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import {fileAxios} from '@/utils/axios';
+import {addr} from '@/config';
+import axios from 'axios';
 import {ref} from 'vue';
 
 interface File {
@@ -12,7 +13,7 @@ interface File {
 
 const files = ref<File[]>([])
 
-fileAxios.get<File[]>('/cloud/').then(res => {
+axios.get<File[]>(addr.api+'/file/cloud/').then(res => {
   files.value = res.data
   files.value.forEach(item => {
     if (item.size) {
@@ -34,7 +35,7 @@ function formatFileSize(bytes: number): string {
 </script>
 
 <template>
-  <cloud-container class="reactive-margin">
+  <div class="reactive-margin">
     <el-table :data="files" height="250" width="500" class="cloud-table">
       <el-table-column prop="name" :label="$t('cloud.name')" />
       <el-table-column prop="mtime" :label="$t('cloud.time')" />
@@ -42,7 +43,7 @@ function formatFileSize(bytes: number): string {
       <el-table-column :label="$t('cloud.open')">
       </el-table-column>
     </el-table>
-  </cloud-container>
+  </div>
 </template>
 
 <style scoped>

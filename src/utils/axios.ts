@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ElMessage } from "element-plus";
-import { apiAddr, fileAddr } from "@/config";
+import { addr } from "@/config";
 
 declare module 'axios' {
   interface AxiosRequestConfig {
@@ -9,16 +9,11 @@ declare module 'axios' {
 }
 
 export const apiAxios = axios.create({
-  baseURL: apiAddr,
+  baseURL: addr.api,
   timeout: 5000,
   headers: {
     'Content-Type': 'application/json',
   },
-})
-
-export const fileAxios = axios.create({
-  baseURL: fileAddr,
-  timeout: 5000,
 })
 
 apiAxios.interceptors.request.use(

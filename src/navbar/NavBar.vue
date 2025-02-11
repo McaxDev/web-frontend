@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {useRoute, useRouter} from 'vue-router';
 import {
-  Setting, Menu, UserFilled, Sunny, Moon, BrushFilled, Brush, User, EditPen, Search,
+  Setting, Menu, UserFilled, Sunny, Moon, BrushFilled, Brush, User, EditPen, Search, FullScreen, SwitchButton,
 } from '@element-plus/icons-vue';
 import {ref,watch} from 'vue';
 import {languages} from '@/config';
@@ -9,12 +9,18 @@ import {useI18n} from 'vue-i18n';
 import {useUserStore} from '@/stores/user';
 import {useGlobalStore} from '@/stores/global';
 import AxLangIcon from './AxLangIcon.vue';
-import AxToolbox from './AxToolbox.vue';
+import NavOthers from './NavOthers.vue';
 import {themes, fontGroups} from '@/config';
+import AppSetting from './AppSetting.vue';
+import AxThemePicker from './AxThemePicker.vue';
+import Cookies from 'js-cookie'
+import { addr } from '@/config';
+import {ElMessage} from 'element-plus';
 
 const router = useRouter()
 const route = useRoute()
 const i18n = useI18n()
+const { t } = useI18n()
 const user = useUserStore()
 const global = useGlobalStore()
 
@@ -23,12 +29,13 @@ const navbarItems = allNavItems.filter(item => !item.meta.others)
 const navOthers = allNavItems.filter(item => item.meta.others)
 
 const drawer = ref(false)
-const colorPicker = ref('#28ABCE')
 const pickerDialog = ref(false)
 const search = ref('')
+const isSettingOpen = ref(false)
 
 function toggleLanguage(language: string) {
   i18n.locale.value = language
+  Cookies.set('language', language, { sameSite: 'Lax' })
 }
 
 watch(() => global.isDark, (value) => {
@@ -39,13 +46,18 @@ watch(() => global.isDark, (value) => {
   }
 })
 
-function setCustomColor() {
-  global.toggleTheme(colorPicker.value)
-  pickerDialog.value = false
-}
-
 function setFontFamily(font: string) {
   document.documentElement.style.setProperty('--font-family', font)
+  Cookies.set('font-family', font, { sameSite: 'Lax' })
+}
+
+function logout() {
+  user.user = null
+  localStorage.removeItem('token')
+  ElMessage({
+    type: 'success',
+    message: t('navbar.logoutMsg')
+  })
 }
 
 </script>
@@ -83,14 +95,14 @@ function setFontFamily(font: string) {
       <el-menu-item v-for="item in navOthers" :key="item.name" :index="item.path">
       {{ $t(item.meta.title as string) }}
       </el-menu-item>
-      <ax-toolbox index="others-toolbox" />
+      <nav-others index="others-nav-others" />
     </el-sub-menu>
 
     <el-menu-item class="hidden-md-and-down" v-for="item in navOthers" :key="item.name" :index="item.path">
       {{ $t(item.meta.title as string) }}
     </el-menu-item>
 
-    <ax-toolbox class="hidden-md-and-down" index="wide-toolbox" />
+    <nav-others class="hidden-md-and-down" index="wide-nav-others" />
 
     <el-menu-item class="hidden-xs-only">
       <el-input :suffix-icon="Search" v-model="search" />
@@ -114,7 +126,8 @@ function setFontFamily(font: string) {
 
     <el-sub-menu class="navlist-no-arrow nav-list" index="avatar">
       <template #title>
-        <el-avatar :icon="UserFilled" id="avatar-icon" />
+        <el-avatar v-if="user.user" :src="`${addr.api}/file/images/${user.user.avatar}`" />
+        <el-avatar v-else :icon="UserFilled" class="avatar-icon" />
       </template>
 
       <el-menu-item v-if="user.user">
@@ -124,6 +137,13 @@ function setFontFamily(font: string) {
         个人信息
       </el-menu-item>
 
+      <el-menu-item>
+        <el-icon>
+          <FullScreen />
+        </el-icon>
+        {{ $t('navbar.scan') }}
+      </el-menu-item>
+
       <el-menu-item v-if="!user.user" index="/login">
         <el-icon>
           <User />
@@ -131,7 +151,7 @@ function setFontFamily(font: string) {
         {{ $t('navbar.login') }}
       </el-menu-item>
 
-      <el-sub-menu v-if="!user.user" index="theme">
+      <el-sub-menu index="theme">
         <template #title>
           <el-icon>
             <brush />
@@ -172,11 +192,18 @@ function setFontFamily(font: string) {
         </el-menu-item>
       </el-sub-menu>
 
-      <el-menu-item>
+      <el-menu-item @click="isSettingOpen = true">
         <el-icon>
           <Setting />
         </el-icon>
-        {{ $t('navbar.setting') }}
+        {{ $t('navbar.setting.title') }}
+      </el-menu-item>
+
+      <el-menu-item v-if="user.user" @click="logout">
+        <el-icon>
+          <SwitchButton />
+        </el-icon>
+        {{ $t('navbar.logout') }}
       </el-menu-item>
     </el-sub-menu>
 
@@ -195,7 +222,7 @@ function setFontFamily(font: string) {
         {{ $t(item.meta.title as string) }}
       </el-menu-item>
 
-      <ax-toolbox index="drawer-toolbox" />
+      <nav-others index="drawer-nav-others" />
 
       <el-menu-item>
         <el-input :suffix-icon="Search" v-model="search" />
@@ -204,16 +231,9 @@ function setFontFamily(font: string) {
     </el-menu>
   </el-drawer>
 
-  <el-dialog v-model="pickerDialog" :title="$t('navbar.pickerTitle')" width="200">
-    <div class="my-2">
-      <el-text class="mr-2">{{ $t('navbar.selectColor') }}</el-text>
-      <el-color-picker v-model="colorPicker" />
-    </div>
-    <div>
-      <el-button @click="pickerDialog=false">{{ $t('cancel') }}</el-button>
-      <el-button type="primary" @click="setCustomColor">{{ $t('confirm') }}</el-button>
-    </div>
-  </el-dialog>
+  <ax-theme-picker v-model="pickerDialog" />
+
+  <app-setting v-model="isSettingOpen" />
 </template>
 
 <style>
@@ -247,8 +267,8 @@ function setFontFamily(font: string) {
 	padding-right: 5px !important;
 }
 
-#avatar-icon .el-icon {
-  margin-right: 0;
+.avatar-icon .el-icon {
+  margin-right: 0 !important;
 }
 
 .drawer-body {

@@ -34,6 +34,17 @@ const dialogContent = ref({
 })
 // 当前wiki的锚点列表
 const anchors = ref<Anchor[]>([])
+// 位置页面
+const unknownWiki: Wiki = {
+  id: 0,
+  createdAt: '',
+  updatedAt: '',
+  path: '',
+  title: '未知页面',
+  category: 'unknown',
+  markdown: '## 未知页面',
+  html: '<h2>未知页面</h2>',
+}
 
 // 获取目录列表
 apiAxios.get<Wiki[]>('/wiki/list').then(res => {
@@ -45,14 +56,21 @@ apiAxios.get<Wiki[]>('/wiki/list').then(res => {
   })
 
   // 监听路由变化，获取wiki内容和锚点列表
-  watch(() => route.params.path as string, async (path: string) => {
+  watch(() => route.params.path as string, (path: string) => {
     if (!wikiByPath.value[path]?.html && path) {
-      const res = await apiAxios.get<{
+      apiAxios.get<{
         anchors: Anchor[],
         wiki: Wiki,
-      }>(`/wiki/get?path=${path}`)
-      wikiByPath.value[path] = res.data.wiki
-      anchors.value = res.data.anchors
+      }>(`/wiki/get?path=${path}`).then(res => {
+        wikiByPath.value[path] = res.data.wiki
+        anchors.value = res.data.anchors
+      }).catch(err => {
+        if (err.response?.status === 404) {
+          wikiByPath.value[path] = unknownWiki
+        } else {
+          console.log(err)
+        }
+      })
     }
   }, {immediate: true})
 }).catch(err => console.log(err))

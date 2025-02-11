@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import {fileAddr} from '@/config';
 import type {Image} from '@/types';
 import {apiAxios} from '@/utils/axios';
 import {ref} from 'vue';
 import {useRoute} from 'vue-router';
+import { addr } from '@/config';
 
 const route = useRoute()
 // 当前相册的图片列表
@@ -29,7 +29,7 @@ apiAxios.get<Image[]>(`/gallery/get/images?path=${route.params.path}`).then(res 
       </el-col>
       <el-col v-for="image in images" :key="image.id" :xs="12" :sm="8" :md="6">
         <el-card body-class="p-0">
-          <el-image class="card-image" fit="cover" :src="`${fileAddr}/images/${image.filename}`" />
+          <el-image class="card-image" fit="cover" :src="`${addr.api}/file/images/${image.filename}`" />
         </el-card>
       </el-col>
 

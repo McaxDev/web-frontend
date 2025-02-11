@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import {fileAddr} from '@/config';
 import type {Image} from '@/types';
 import {apiAxios} from '@/utils/axios';
 import {ref} from 'vue';
+import { addr } from '@/config';
 
 const carousel = ref<Image[]>([])
 
@@ -22,7 +22,7 @@ const notes = [
     <el-carousel-item v-for="item in carousel" :key="item.id">
       <el-image
         fit="cover"
-        :src="`${fileAddr}/images/${item.filename}`"
+        :src="`${addr.api}/file/images/${item.filename}`"
         class="image"
       />
     </el-carousel-item>

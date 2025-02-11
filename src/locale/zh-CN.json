@@ -17,8 +17,23 @@
 		"about": "关于我们",
 		"login": "登录/注册",
 		"theme": "主题",
-		"setting": "设置",
-		"toolbox": "工具箱",
+		"setting": {
+			"title": "设置",
+			"system": {
+				"tab": "系统设置",
+				"personalization": "个性化",
+				"technical": "技术性",
+				"transition": "过渡动画",
+				"getCookie": "查看缓存",
+				"delCookie": "清除缓存",
+				"fontSize": "字体大小",
+				"apiAddr": "服务器地址"
+			},
+			"user": {
+				"tab": "用户设置",
+				"privacy": "隐私设置"
+			}
+		},
 		"playerLog": "玩家日志",
 		"custom": "自定义",
 		"pickerTitle": "自定义颜色",
@@ -28,7 +43,10 @@
 		"serif": "衬线字体",
 		"monospace": "等宽字体",
 		"cursive": "装饰字体",
-		"moreFonts": "更多字体"
+		"moreFonts": "更多字体",
+		"scan": "扫描二维码",
+		"logout": "退出登录",
+		"logoutMsg": "已成功退出登录"
 	},
 	"home": {
 		"profile": [
@@ -48,6 +66,30 @@
     "notes": "玩家留言",
 		"online": "当前在线 {online} 玩家",
 		"map": "在线地图"
+	},
+	"guild": {
+		"list": "公会列表",
+		"home": "我的公会",
+		"bbs": "公会论坛",
+		"aside": {
+			"title": "公会信息",
+			"logout": "请登录后查看公会信息",
+			"noguild": "你还没有公会，快去加入吧",
+			"name": "公会名",
+			"number": "公会人数",
+			"money": "公会资金",
+			"level": "公会等级",
+			"profile": "公会简介",
+			"notice": "公会公告",
+			"perm": {
+				"title": "我的职位",
+				"0": "无公会",
+				"1": "待审核加入",
+				"2": "正式会员",
+				"3": "管理员",
+				"4": "会长"
+			}
+		}
 	},
 	"login": {
 		"brand": "欢迎加入Axolotland！",
@@ -72,10 +114,12 @@
 		"title": "标题",
 		"content": "内容"
 	},
-	"forums": {
-		"bbs": "论坛",
-		"latestNews": "最新消息",
-		"members": "会员",
+	"bbs": {
+		"menu": {
+			"home": "论坛主页",
+			"news": "最新消息",
+			"members": "会员"
+		},
 		"games": {
 			"title": "游戏交流分区",
 			"main": "MC主服务器",

@@ -5,7 +5,7 @@ import { Link } from '@element-plus/icons-vue';
 <template>
   <el-sub-menu index="toolbox">
     <template #title>
-      {{ $t('navbar.toolbox') }}
+      {{ $t('navbar.others') }}
     </template>
     <a href="https://www.chunkbase.com/apps/seed-map" target="_blank" class="decoration-none">
       <el-menu-item>

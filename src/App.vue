@@ -1,21 +1,26 @@
 <script setup lang="ts">
-import AxNavbar from './navbar/AxNavbar.vue';
+import NavBar from './navbar/NavBar.vue';
 import AxFooter from './components/AxFooter.vue';
 import {onMounted} from 'vue';
 import {getMyInfo} from './utils/getMyInfo';
+import {useGlobalStore} from './stores/global';
+import { loadCookies } from './utils/loadCookie';
+
+const global = useGlobalStore()
 
 onMounted(() => {
   getMyInfo()
+  loadCookies()
 })
 </script>
 
 <template>
   <header class="navbar-box">
-    <ax-navbar />
+    <nav-bar />
   </header>
   <main>
     <router-view v-slot="{ Component }">
-      <transition class="el-fade-in-linear">
+      <transition :name="global.transition">
         <component :is="Component" />
       </transition>
     </router-view>
