@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import {useGlobalStore} from '@/stores/global';
-import {useUserStore} from '@/stores/user';
-import {apiAxios} from '@/utils/axios';
-import {getMyInfo} from '@/utils/getMyInfo';
-import {ref} from 'vue';
-import CryptoJS from 'crypto-js';
+import { useStateStore } from '@/stores/state'
+import { useUserStore } from '@/stores/user'
+import { apiAxios } from '@/utils/axios'
+import { getMyInfo } from '@/utils/getMyInfo'
+import { ref } from 'vue'
+import CryptoJS from 'crypto-js'
 
-const global = useGlobalStore()
+const global = useStateStore()
 
 const loginForm = ref({
   account: '',
@@ -31,31 +31,31 @@ const retrieveForm = ref({
 const action = ref('login')
 
 async function handleLogin() {
-console.log("aaa")
-  apiAxios.post<string>('/account/login', {
-    account: loginForm.value.account,
-    password: CryptoJS.SHA256(loginForm.value.password).toString(),
-  }).then(res => {
-    localStorage.setItem('token', res.data)
-    getMyInfo()
-    console.log(useUserStore().user)
-  }).catch(err => console.log(err))
+  console.log('aaa')
+  apiAxios
+    .post<string>('/account/login', {
+      account: loginForm.value.account,
+      password: CryptoJS.SHA256(loginForm.value.password).toString(),
+    })
+    .then((res) => {
+      localStorage.setItem('token', res.data)
+      getMyInfo()
+      console.log(useUserStore().user)
+    })
+    .catch((err) => console.log(err))
 }
 </script>
 
 <template>
   <el-row class="login">
-
     <el-col :span="0" :sm="4" :md="13" :lg="14" />
 
     <el-col :span="24" :sm="16" :md="10" :lg="8" class="form">
-
       <h2>
         {{ $t('login.brand') }}
       </h2>
 
       <el-tabs v-model="action">
-
         <!-- 登录表单 -->
         <el-tab-pane :label="$t('login.login')" name="login">
           <el-form :model="loginForm" label-width="auto">
@@ -106,7 +106,6 @@ console.log("aaa")
         <!-- 找回密码表单 -->
         <el-tab-pane :label="$t('login.retrieve')" name="retrieve">
           <el-form :model="retrieveForm" label-width="auto">
-
             <el-form-item :label="$t('login.email')">
               <el-input v-model="retrieveForm.email">
                 <template #append>
@@ -129,10 +128,8 @@ console.log("aaa")
             </el-form-item>
           </el-form>
         </el-tab-pane>
-
       </el-tabs>
     </el-col>
-
   </el-row>
 </template>
 

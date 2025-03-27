@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import AxWikiMenu from '@/components/AxWikiMenu.vue';
-import type {Wiki} from '@/types';
-import {apiAxios} from '@/utils/axios';
-import {watch} from 'vue';
-import {ref} from 'vue';
-import {useRoute} from 'vue-router';
-import { Delete, Edit } from '@element-plus/icons-vue';
-import {useGlobalStore} from '@/stores/global';
+import AxWikiMenu from '@/components/AxWikiMenu.vue'
+import type { Wiki } from '@/types'
+import { apiAxios } from '@/utils/axios'
+import { watch } from 'vue'
+import { ref } from 'vue'
+import { useRoute } from 'vue-router'
+import { Delete, Edit } from '@element-plus/icons-vue'
+import { useStateStore } from '@/stores/state'
 
 const route = useRoute()
-const global = useGlobalStore()
+const global = useStateStore()
 
 // 当前wiki的锚点类型
 interface Anchor {
-  id: string,
-  subAnchors: Anchor[],
+  id: string
+  subAnchors: Anchor[]
 }
 // 键是wiki路径，值是wiki对象
 const wikiByPath = ref<Record<string, Wiki>>({})
@@ -47,33 +47,42 @@ const unknownWiki: Wiki = {
 }
 
 // 获取目录列表
-apiAxios.get<Wiki[]>('/wiki/list').then(res => {
+apiAxios
+  .get<Wiki[]>('/wiki/list')
+  .then((res) => {
+    // 将获取的目录添加到两个对象
+    res.data.forEach((item) => {
+      wikiByPath.value[item.path] = item
+      ;(wikiListByCategory.value[item.category] ??= []).push(item)
+    })
 
-  // 将获取的目录添加到两个对象
-  res.data.forEach(item => {
-    wikiByPath.value[item.path] = item;
-    (wikiListByCategory.value[item.category] ??= []).push(item);
-  })
-
-  // 监听路由变化，获取wiki内容和锚点列表
-  watch(() => route.params.path as string, (path: string) => {
-    if (!wikiByPath.value[path]?.html && path) {
-      apiAxios.get<{
-        anchors: Anchor[],
-        wiki: Wiki,
-      }>(`/wiki/get?path=${path}`).then(res => {
-        wikiByPath.value[path] = res.data.wiki
-        anchors.value = res.data.anchors
-      }).catch(err => {
-        if (err.response?.status === 404) {
-          wikiByPath.value[path] = unknownWiki
-        } else {
-          console.log(err)
+    // 监听路由变化，获取wiki内容和锚点列表
+    watch(
+      () => route.params.path as string,
+      (path: string) => {
+        if (!wikiByPath.value[path]?.html && path) {
+          apiAxios
+            .get<{
+              anchors: Anchor[]
+              wiki: Wiki
+            }>(`/wiki/get?path=${path}`)
+            .then((res) => {
+              wikiByPath.value[path] = res.data.wiki
+              anchors.value = res.data.anchors
+            })
+            .catch((err) => {
+              if (err.response?.status === 404) {
+                wikiByPath.value[path] = unknownWiki
+              } else {
+                console.log(err)
+              }
+            })
         }
-      })
-    }
-  }, {immediate: true})
-}).catch(err => console.log(err))
+      },
+      { immediate: true },
+    )
+  })
+  .catch((err) => console.log(err))
 
 // 打开编辑wiki对话框
 function openDialog(isEdit: boolean) {
@@ -81,7 +90,7 @@ function openDialog(isEdit: boolean) {
   const current = wikiByPath.value[route.params.path as string]
   if (current) {
     dialogContent.value.path = isEdit ? current.path : ''
-    dialogContent.value.title =  isEdit ? current.title : ''
+    dialogContent.value.title = isEdit ? current.title : ''
     dialogContent.value.markdown = isEdit ? current.markdown : ''
   }
   dialogStatus.value = true
@@ -91,41 +100,43 @@ function openDialog(isEdit: boolean) {
 async function doSetWiki() {
   // 编辑wiki
   if (dialogContent.value.isEdit) {
-  await apiAxios.post('/wiki/edit', {
-    id: wikiByPath.value[route.params.path as string].id,
-    path: dialogContent.value.path,
-    title: dialogContent.value.title,
-    markdown: dialogContent.value.markdown,
-  })
-  // 新增wiki
+    await apiAxios.post('/wiki/edit', {
+      id: wikiByPath.value[route.params.path as string].id,
+      path: dialogContent.value.path,
+      title: dialogContent.value.title,
+      markdown: dialogContent.value.markdown,
+    })
+    // 新增wiki
   } else {
-
   }
 }
 
 async function doDeleteWiki() {}
-
 </script>
 
 <template>
   <div class="wiki-container">
-
     <!-- 桌面端目录 -->
-    <ax-wiki-menu class="hidden-xs-only wiki-menu" :data="wikiListByCategory" @open-dialog="openDialog(false)" />
+    <ax-wiki-menu
+      class="hidden-xs-only wiki-menu"
+      :data="wikiListByCategory"
+      @open-dialog="openDialog(false)"
+    />
 
     <!-- 正文 -->
     <section class="wiki-main">
-      <header class="wiki-title">
-        <div>{{ wikiByPath[$route.params.path as string]?.title }}</div>
-        <el-button @click="openDialog(true)" class="ms-auto" circle :icon="Edit" />
-        <el-button @click="doDeleteWiki" circle :icon="Delete" />
-      </header>
-      <article class="wiki-content" v-html="wikiByPath[$route.params.path as string]?.html" />
+      <el-card class="m-3">
+        <header class="wiki-title">
+          <div>{{ wikiByPath[$route.params.path as string]?.title }}</div>
+          <el-button @click="openDialog(true)" class="ms-auto" circle :icon="Edit" />
+          <el-button @click="doDeleteWiki" circle :icon="Delete" />
+        </header>
+        <article class="wiki-content" v-html="wikiByPath[$route.params.path as string]?.html" />
 
-      <!-- 移动端目录按钮 -->
-      <el-button @click="drawerStatus = !drawerStatus" class="affix-right hidden-sm-and-up">
-      </el-button>
-
+        <!-- 移动端目录按钮 -->
+        <el-button @click="drawerStatus = !drawerStatus" class="affix-right hidden-sm-and-up">
+        </el-button>
+      </el-card>
     </section>
 
     <!-- 锚点列表 -->
@@ -134,7 +145,11 @@ async function doDeleteWiki() {}
         <el-anchor-link v-for="anchor in anchors" :key="anchor.id" :href="`#${anchor.id}`">
           {{ anchor.id }}
           <template v-if="anchor.subAnchors" #sub-link>
-            <el-anchor-link v-for="subAnchor in anchor.subAnchors" :key="subAnchor.id" :href="`#${subAnchor.id}`">
+            <el-anchor-link
+              v-for="subAnchor in anchor.subAnchors"
+              :key="subAnchor.id"
+              :href="`#${subAnchor.id}`"
+            >
               {{ subAnchor.id }}
             </el-anchor-link>
           </template>
@@ -166,7 +181,6 @@ async function doDeleteWiki() {}
         <el-button :color="global.theme" @click="doSetWiki">{{ $t('confirm') }}</el-button>
       </template>
     </el-dialog>
-
   </div>
 </template>
 

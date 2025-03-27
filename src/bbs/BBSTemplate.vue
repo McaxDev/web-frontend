@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import PageTemplate, {type NavSideItem} from '@/components/PageTemplate.vue';
-import {useGlobalStore} from '@/stores/global';
-import { Menu as IconMenu, User, Document } from '@element-plus/icons-vue';
+import PageTemplate, { type NavSideItem } from '@/components/PageTemplate.vue'
+import { useStateStore } from '@/stores/state'
+import { Menu as IconMenu, User, Document } from '@element-plus/icons-vue'
 
-const global = useGlobalStore()
+const global = useStateStore()
 
 const navs: NavSideItem[] = [
   {
@@ -39,13 +39,10 @@ const navs: NavSideItem[] = [
         <el-card>
           <el-descriptions direction="vertical">
             <template #title>
-              <div class="text-title">
-                统计信息
-              </div>
+              <div class="text-title">统计信息</div>
             </template>
             <el-descriptions-item label="注册用户">0</el-descriptions-item>
             <el-descriptions-item label="帖子总数">0</el-descriptions-item>
-
           </el-descriptions>
         </el-card>
       </section>

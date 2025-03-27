@@ -1,42 +1,41 @@
 {
-    "navbar": {
-        "main": "Accueil",
-        "wiki": "Wiki",
-        "gallery": "Galerie",
-        "guild": "Guilde",
-        "bbs": "Forum",
-        "rank": "Classement",
-        "others": "Autres",
-        "drawer": "Menu",
-        "cloud": "Station de fichiers",
-        "about": "À propos de nous",
-        "login": "Connexion/Inscription",
-        "theme": "Thème",
-        "setting": "Paramètres"
-    },
-    "login": {
-        "brand": "Bienvenue sur Axolotland !",
-        "account": "Compte",
-        "password": "Mot de passe",
-        "login": "Connexion",
-        "signup": "Inscription",
-        "username": "Nom d'utilisateur",
-        "email": "Email",
-        "emailCode": "Code de vérification email",
-        "sendEmail": "Envoyer un email",
-        "captcha": "Captcha",
-        "retrieve": "Récupérer le mot de passe",
-        "newPassword": "Nouveau mot de passe"
-    },
-    "wiki": {
-        "drawer": "Table des matières",
-        "add": "Ajouter un document"
-    },
-    "cloud": {
-        "name": "Nom du fichier",
-        "time": "Dernière modification",
-        "size": "Taille",
-        "open": "Ouvrir/Télécharger"
-    }
+  "navbar": {
+    "main": "Accueil",
+    "wiki": "Wiki",
+    "gallery": "Galerie",
+    "guild": "Guilde",
+    "bbs": "Forum",
+    "rank": "Classement",
+    "others": "Autres",
+    "drawer": "Menu",
+    "cloud": "Station de fichiers",
+    "about": "À propos de nous",
+    "login": "Connexion/Inscription",
+    "theme": "Thème",
+    "setting": "Paramètres"
+  },
+  "login": {
+    "brand": "Bienvenue sur Axolotland !",
+    "account": "Compte",
+    "password": "Mot de passe",
+    "login": "Connexion",
+    "signup": "Inscription",
+    "username": "Nom d'utilisateur",
+    "email": "Email",
+    "emailCode": "Code de vérification email",
+    "sendEmail": "Envoyer un email",
+    "captcha": "Captcha",
+    "retrieve": "Récupérer le mot de passe",
+    "newPassword": "Nouveau mot de passe"
+  },
+  "wiki": {
+    "drawer": "Table des matières",
+    "add": "Ajouter un document"
+  },
+  "cloud": {
+    "name": "Nom du fichier",
+    "time": "Dernière modification",
+    "size": "Taille",
+    "open": "Ouvrir/Télécharger"
+  }
 }
-

@@ -1,13 +1,13 @@
 export interface Forum {
-  path: string,
-  name: string,
-  subtitle: string,
-  image: string,
+  path: string
+  name: string
+  subtitle: string
+  image: string
 }
 
 export interface ForumPart {
-  name: string,
-  forums: Forum[],
+  name: string
+  forums: Forum[]
 }
 
 export const forums: Record<string, Forum> = {
@@ -58,12 +58,12 @@ export const forums: Record<string, Forum> = {
     name: 'bbs.feedback.suggestions',
     subtitle: 'bbs.feedback.suggestionsSubtitle',
     image: '/bbs/feedback-suggestions.jpg',
-  }
+  },
 }
 
-export const forumParts: ForumPart[] = [
+export const forumGroups: ForumPart[] = [
   {
-    name: 'bbs.games.title',
+    name: '游戏交流分区',
     forums: [
       forums['main'],
       forums['sc'],
@@ -74,10 +74,7 @@ export const forumParts: ForumPart[] = [
     ],
   },
   {
-    name: 'bbs.feedback.title',
-    forums: [
-      forums['bugs'],
-      forums['suggestions'],
-    ],
+    name: '反馈分区',
+    forums: [forums['bugs'], forums['suggestions']],
   },
 ]

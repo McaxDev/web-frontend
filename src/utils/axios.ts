@@ -1,10 +1,10 @@
-import axios from "axios";
-import { ElMessage } from "element-plus";
-import { addr } from "@/config";
+import axios from 'axios'
+import { ElMessage } from 'element-plus'
+import { addr } from '@/config'
 
 declare module 'axios' {
   interface AxiosRequestConfig {
-    noMsg?: boolean,
+    noMsg?: boolean
   }
 }
 
@@ -16,22 +16,26 @@ export const apiAxios = axios.create({
   },
 })
 
+export const fileAxios = axios.create({
+  baseURL: addr.file,
+  timeout: 5000,
+})
+
 apiAxios.interceptors.request.use(
-  config => {
+  (config) => {
     const token = localStorage.getItem('token')
     if (token) {
       config.headers.set('Authorization', `Bearer ${token}`)
     }
     return config
   },
-  err => {
+  (err) => {
     return Promise.reject(err)
   },
 )
 
 apiAxios.interceptors.response.use(
-  res => {
-
+  (res) => {
     const newToken = res.headers['Authorization']
     if (newToken) {
       localStorage.setItem('token', newToken)
@@ -45,7 +49,7 @@ apiAxios.interceptors.response.use(
     }
     return res.data
   },
-  err => {
+  (err) => {
     return Promise.reject(err)
   },
 )

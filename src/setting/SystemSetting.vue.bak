@@ -1,0 +1,55 @@
+<script setup lang="ts">
+import { reactive } from 'vue';
+import { addr } from '@/config';
+import useSystemStore from '@/stores/system';
+import { ElMessageBox } from 'element-plus';
+import { useI18n } from 'vue-i18n';
+
+const {t} = useI18n()
+const system = useSystemStore()
+const systemForm = reactive({
+  apiAddr: addr.api,
+})
+
+function getCookie() {
+  const storages: Record<string, string> = {}
+  for (let i = 1; i < localStorage.length; i++) {
+    const key = localStorage.key(i) as string
+    const value = localStorage.getItem(key) as string
+    storages[key] = value
+  }
+  ElMessageBox.alert(JSON.stringify(storages), t('navbar.setting.system.getCookie'), {
+    confirmButtonText: t('confirm'),
+  })
+}
+
+function clearStorage() {
+  localStorage.clear()
+}
+</script>
+
+<template>
+  <el-card>
+    <div class="text-title">
+      {{ $t('navbar.setting.system.personalization') }}
+    </div>
+      <el-slider v-model="system.fontSize" :min="8" :max="32" />
+      <el-select v-model="system.transition">
+        <el-option
+          v-for="item in transations" :key="item.id"
+          :label="item.label" :value="item.id"
+        />
+      </el-select>
+
+    <div class="text-title">
+      {{ $t('navbar.setting.system.technical') }}
+    </div>
+      <el-input v-model="systemForm.apiAddr" />
+      <el-button @click="clearStorage()" :color="system.theme">
+        {{ $t('navbar.setting.system.delCookie') }}
+      </el-button>
+      <el-button @click="getCookie">
+        {{ $t('navbar.setting.system.getCookie') }}
+      </el-button>
+  </el-card>
+</template>

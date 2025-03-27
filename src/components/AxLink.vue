@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
-import { Link } from '@element-plus/icons-vue';
+import { defineProps } from 'vue'
+import { Link } from '@element-plus/icons-vue'
 
-defineProps<{text: string}>()
+defineProps<{ text: string }>()
 </script>
 
 <template>
@@ -20,4 +20,3 @@ defineProps<{text: string}>()
   align-items: center;
 }
 </style>
-

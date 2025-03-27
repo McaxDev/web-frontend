@@ -1,42 +1,41 @@
 {
-    "navbar": {
-        "main": "Inicio",
-        "wiki": "Wiki",
-        "gallery": "Galería",
-        "guild": "Gremio",
-        "bbs": "Foro",
-        "rank": "Clasificación",
-        "others": "Otros",
-        "drawer": "Menú",
-        "cloud": "Estación de archivos",
-        "about": "Sobre nosotros",
-        "login": "Iniciar sesión/Registrarse",
-        "theme": "Tema",
-        "setting": "Configuraciones"
-    },
-    "login": {
-        "brand": "¡Bienvenido a Axolotland!",
-        "account": "Cuenta",
-        "password": "Contraseña",
-        "login": "Iniciar sesión",
-        "signup": "Registrarse",
-        "username": "Nombre de usuario",
-        "email": "Correo electrónico",
-        "emailCode": "Código de verificación por correo",
-        "sendEmail": "Enviar correo",
-        "captcha": "Captcha",
-        "retrieve": "Recuperar contraseña",
-        "newPassword": "Nueva contraseña"
-    },
-    "wiki": {
-        "drawer": "Índice",
-        "add": "Agregar documento"
-    },
-    "cloud": {
-        "name": "Nombre del archivo",
-        "time": "Última modificación",
-        "size": "Tamaño",
-        "open": "Abrir/Descargar"
-    }
+  "navbar": {
+    "main": "Inicio",
+    "wiki": "Wiki",
+    "gallery": "Galería",
+    "guild": "Gremio",
+    "bbs": "Foro",
+    "rank": "Clasificación",
+    "others": "Otros",
+    "drawer": "Menú",
+    "cloud": "Estación de archivos",
+    "about": "Sobre nosotros",
+    "login": "Iniciar sesión/Registrarse",
+    "theme": "Tema",
+    "setting": "Configuraciones"
+  },
+  "login": {
+    "brand": "¡Bienvenido a Axolotland!",
+    "account": "Cuenta",
+    "password": "Contraseña",
+    "login": "Iniciar sesión",
+    "signup": "Registrarse",
+    "username": "Nombre de usuario",
+    "email": "Correo electrónico",
+    "emailCode": "Código de verificación por correo",
+    "sendEmail": "Enviar correo",
+    "captcha": "Captcha",
+    "retrieve": "Recuperar contraseña",
+    "newPassword": "Nueva contraseña"
+  },
+  "wiki": {
+    "drawer": "Índice",
+    "add": "Agregar documento"
+  },
+  "cloud": {
+    "name": "Nombre del archivo",
+    "time": "Última modificación",
+    "size": "Tamaño",
+    "open": "Abrir/Descargar"
+  }
 }
-

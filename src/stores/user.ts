@@ -1,14 +1,19 @@
-import type {User} from "@/types";
-import { defineStore } from "pinia";
+import { Model } from 'echarts'
+import { defineStore } from 'pinia'
+import type { Guild } from '@/types'
+import {ref} from 'vue'
+import type {User} from '@/utils/tables'
 
-export interface UserState {
-  user: User | null,
-}
+const useUserStore = defineStore(
+  'user',
+  () => {
+    const user = ref<User|null>(null)
+    const token = ref<string|null>(null)
+    return {user, token}
+  },
+  {
+    persist: true,
+  },
+)
 
-export const useUserStore = defineStore('user', {
-  state: (): UserState => {
-    return {
-      user: null,
-    }
-  }
-})
+export default useUserStore

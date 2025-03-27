@@ -1,173 +1,242 @@
 {
-	"cancel": "取消",
-	"confirm": "确认",
-	"components": {
-		"historyOnline": "24h历史在线"
-	},
-	"navbar": {
-		"main": "主页",
-		"wiki": "文档站",
-		"gallery": "回忆录",
-		"guild": "公会",
-		"bbs": "论坛",
-		"rank": "排行榜",
-		"others": "其他",
-		"drawer": "菜单",
-		"cloud": "文件站",
-		"about": "关于我们",
-		"login": "登录/注册",
-		"theme": "主题",
-		"setting": {
-			"title": "设置",
-			"system": {
-				"tab": "系统设置",
-				"personalization": "个性化",
-				"technical": "技术性",
-				"transition": "过渡动画",
-				"getCookie": "查看缓存",
-				"delCookie": "清除缓存",
-				"fontSize": "字体大小",
-				"apiAddr": "服务器地址"
-			},
-			"user": {
-				"tab": "用户设置",
-				"privacy": "隐私设置"
-			}
-		},
-		"playerLog": "玩家日志",
-		"custom": "自定义",
-		"pickerTitle": "自定义颜色",
-		"selectColor": "请选择颜色",
-		"fonts": "字体",
-		"sans-serif": "无衬线字体",
-		"serif": "衬线字体",
-		"monospace": "等宽字体",
-		"cursive": "装饰字体",
-		"moreFonts": "更多字体",
-		"scan": "扫描二维码",
-		"logout": "退出登录",
-		"logoutMsg": "已成功退出登录"
-	},
-	"home": {
-		"profile": [
-			{
-				"title": "Axolotland是什么？",
-				"content": "Axolotland是一个非盈利的游戏联机圈子，提供我的世界、饥荒联机版、泰拉瑞亚、星露谷物语等游戏的服务器。"
-			},
-			{
-				"title": "为什么选择Axolotland",
-				"content": "不收取任何费用，没有充值项目，只接受无偿赞助。提倡原版玩法，没有花哨功能。不设置管理员，提倡玩家身份平等。服务器性能好，多人体验流畅。"
-			},
-			{
-				"title": "关于Axolotland",
-				"content": "Axolotland的名称是Axolotland（美西螈，Minecraft的生物）和land的组合词。圈子自2017年建QQ群以来，目前加入者已达700人。"
-			}
-		],
+  "cancel": "取消",
+  "confirm": "确认",
+  "components": {
+    "historyOnline": "24h历史在线"
+  },
+  "navbar": {
+    "home": "主页",
+    "wiki": "文档站",
+    "gallery": "回忆录",
+    "guild": "公会",
+    "bbs": "论坛",
+    "rank": "排行榜",
+    "others": "其他",
+    "drawer": "菜单",
+    "cloud": "文件站",
+    "about": "关于我们",
+		"externalLinks": "外部链接",
+    "login": "登录/注册",
+		"download": "下载客户端",
+    "theme": "主题",
+		"systemSetting": "系统设置",
+    "setting": {
+      "title": "设置",
+      "system": {
+        "tab": "系统设置",
+        "personalization": "个性化",
+        "technical": "技术性",
+        "transition": "过渡动画",
+        "getCookie": "查看缓存",
+        "delCookie": "清除缓存",
+        "fontSize": "字体大小",
+        "apiAddr": "服务器地址"
+      },
+      "user": {
+        "tab": "用户设置",
+        "privacy": "隐私设置"
+      }
+    },
+    "playerLog": "玩家日志",
+    "custom": "自定义",
+    "pickerTitle": "自定义颜色",
+    "selectColor": "请选择颜色",
+    "fonts": "字体",
+    "sans-serif": "无衬线字体",
+    "serif": "衬线字体",
+    "monospace": "等宽字体",
+    "cursive": "装饰字体",
+    "moreFonts": "更多字体",
+    "scan": "扫描二维码",
+    "logout": "退出登录",
+    "logoutMsg": "已成功退出登录"
+  },
+  "home": {
+    "profile": [
+      {
+        "title": "Axolotland是什么？",
+        "content": "Axolotland是一个非盈利的游戏联机圈子，提供我的世界、饥荒联机版、泰拉瑞亚、星露谷物语等游戏的服务器。"
+      },
+      {
+        "title": "为什么选择Axolotland",
+        "content": "不收取任何费用，没有充值项目，只接受无偿赞助。提倡原版玩法，没有花哨功能。不设置管理员，提倡玩家身份平等。服务器性能好，多人体验流畅。"
+      },
+      {
+        "title": "关于Axolotland",
+        "content": "Axolotland的名称是Axolotland（美西螈，Minecraft的生物）和land的组合词。圈子自2017年建QQ群以来，目前加入者已达700人。"
+      }
+    ],
     "notes": "玩家留言",
-		"online": "当前在线 {online} 玩家",
-		"map": "在线地图"
-	},
-	"guild": {
-		"list": "公会列表",
-		"home": "我的公会",
-		"bbs": "公会论坛",
-		"aside": {
-			"title": "公会信息",
-			"logout": "请登录后查看公会信息",
-			"noguild": "你还没有公会，快去加入吧",
-			"name": "公会名",
-			"number": "公会人数",
-			"money": "公会资金",
-			"level": "公会等级",
-			"profile": "公会简介",
-			"notice": "公会公告",
-			"perm": {
-				"title": "我的职位",
-				"0": "无公会",
-				"1": "待审核加入",
-				"2": "正式会员",
-				"3": "管理员",
-				"4": "会长"
+    "online": "当前在线 {online} 玩家",
+    "map": "在线地图",
+    "joinQq": {
+      "text": "加入QQ群，参与讨论并获取最新消息！",
+      "join": "加入"
+    },
+    "stat": {
+      "title": "在线玩家统计"
+    }
+  },
+  "guild": {
+		"layout": {
+			"home": "公会列表",
+			"forum": "公会论坛",
+			"members": "公会成员",
+			"album": "公会相册",
+			"openMenu": "菜单",
+			"openMyGuild": "我的公会",
+			"myGuild": "我的公会",
+			"noGuild": "你尚未加入公会",
+			"logout": "你尚未登录",
+			"guild": {
+				"home": "公会列表",
+				"forum": "公会论坛",
+				"members": "公会成员",
+				"album": "公会相册"
 			}
-		}
-	},
-	"login": {
-		"brand": "欢迎加入Axolotland！",
-		"account": "账号",
-		"password": "密码",
-		"login": "登录",
-		"signup": "注册",
-		"username": "用户名",
-		"email": "邮箱",
-		"emailCode": "邮箱验证码",
-		"sendEmail": "发送邮件",
-		"captcha": "验证码",
-		"retrieve": "找回密码",
-		"newPassword": "新密码"
-	},
-	"wiki": {
-		"drawer": "目录",
-		"add": "新增文档",
-		"edit": "编辑",
-		"delete": "删除",
-		"path": "路径",
-		"title": "标题",
-		"content": "内容"
-	},
-	"bbs": {
-		"menu": {
-			"home": "论坛主页",
-			"news": "最新消息",
-			"members": "会员"
 		},
-		"games": {
-			"title": "游戏交流分区",
-			"main": "MC主服务器",
-			"mainSubtitle": "副标题",
-			"sc": "MCJE生电服务器",
-			"scSubtitle": "副标题",
-			"mod": "MCJE模组服务器",
-			"modSubtitle": "副标题",
-			"bedrock": "基岩版服务器",
-			"bedrockSubtitle": "副标题",
-			"dst": "饥荒联机版服务器",
-			"dstSubtitle": "副标题",
-			"terraria": "泰拉瑞亚服务器",
-			"terrariaSubtitle": "副标题"
+    "list": "公会列表",
+    "home": "我的公会",
+    "bbs": "公会论坛",
+    "aside": {
+      "title": "公会信息",
+      "logout": "请登录后查看公会信息",
+      "noguild": "你还没有公会，快去加入吧",
+      "name": "公会名",
+      "number": "公会人数",
+      "money": "公会资金",
+      "level": "公会等级",
+      "profile": "公会简介",
+      "notice": "公会公告",
+      "perm": {
+        "title": "我的职位",
+        "0": "无公会",
+        "1": "待审核加入",
+        "2": "正式会员",
+        "3": "管理员",
+        "4": "会长"
+      }
+    }
+  },
+  "login": {
+    "brand": "欢迎加入Axolotland！",
+    "account": "账号",
+    "password": "密码",
+    "login": "登录",
+    "signup": "注册",
+    "username": "用户名",
+    "email": "邮箱",
+    "emailCode": "邮箱验证码",
+    "sendEmail": "发送邮件",
+    "captcha": "验证码",
+    "retrieve": "找回密码",
+    "newPassword": "新密码"
+  },
+  "wiki": {
+    "drawer": "目录",
+    "add": "新增文档",
+    "edit": "编辑",
+    "delete": "删除",
+    "path": "路径",
+    "title": "标题",
+    "content": "内容"
+  },
+  "bbs": {
+    "layout": {
+      "home": "论坛主页",
+      "news": "最新消息",
+      "members": "会员",
+			"myinfo": "个人信息",
+			"title": "论坛",
+			"openMenu": "菜单",
+			"openMyinfo": "个人信息",
+			"bbs": {
+				"home": "论坛主页",
+				"news": "新鲜事",
+				"members": "成员列表"
+			}
+    },
+		"myinfo": {
+			"empty": "请先登录"
 		},
-		"feedback": {
-			"title": "反馈分区",
-			"bugs": "BUG反馈",
-			"bugsSubtitle": "副标题",
-			"suggestions": "建议反馈",
-			"suggestionsSubtitle": "副标题"
+    "games": {
+      "title": "游戏交流分区",
+      "main": "MC主服务器",
+      "mainSubtitle": "副标题",
+      "sc": "MCJE生电服务器",
+      "scSubtitle": "副标题",
+      "mod": "MCJE模组服务器",
+      "modSubtitle": "副标题",
+      "bedrock": "基岩版服务器",
+      "bedrockSubtitle": "副标题",
+      "dst": "饥荒联机版服务器",
+      "dstSubtitle": "副标题",
+      "terraria": "泰拉瑞亚服务器",
+      "terrariaSubtitle": "副标题"
+    },
+    "feedback": {
+      "title": "反馈分区",
+      "bugs": "BUG反馈",
+      "bugsSubtitle": "副标题",
+      "suggestions": "建议反馈",
+      "suggestionsSubtitle": "副标题"
+    }
+  },
+  "gallery": {
+		"images": {
+			"title": "相册"
+		},
+    "title": "画廊"
+  },
+  "cloud": {
+    "name": "文件名",
+    "time": "最后修改时间",
+    "size": "大小",
+    "operation": "操作",
+    "open": "打开",
+    "download": "下载",
+    "preMenu": "上一级菜单"
+  },
+  "about": {
+    "technologies": "Axolotland依赖的技术",
+    "newtonword": "“如果我看得更远，那是因为我站在巨人的肩膀上。”",
+    "newton": "艾萨克·牛顿",
+    "server": "服务器",
+    "operate": "运维",
+    "frontend": "前端",
+    "backend": "后端",
+    "database": "数据库"
+  },
+  "footer": {
+    "ip": "当前IP",
+    "friendLinks": "友情链接",
+    "wikis": "百科",
+    "resources": "资源下载",
+    "contacts": "联系我们",
+    "icp": "备案号: 豫ICP备2023025148号 "
+  },
+  "user": {
+    "userInfo": "用户信息",
+    "userData": "用户数据"
+  },
+	"systemSetting": {
+		"title": "系统设置",
+		"personalization": {
+			"title": "个性化设置",
+			"themeColor": "主题色",
+			"darkMode": "暗黑模式",
+			"dark": "暗色",
+			"light": "亮色",
+			"auto": "跟随系统",
+			"fontSize": "字体大小",
+			"fontFamily": "字体样式",
+			"transition": "过渡动画"
+		},
+		"technical": {
+			"title": "技术性设置",
+			"serverAddr": "服务器地址",
+			"storage": "本地存储",
+			"clearStorage": "清除本地存储"
 		}
-	},
-	"gallery": {
-		"title": "画廊"
-	},
-	"cloud": {
-		"name": "文件名",
-		"time": "最后修改时间",
-		"size": "大小",
-		"open": "打开/下载"
-	},
-	"about": {
-		"technologies": "Axolotland依赖的技术",
-		"newtonword": "“如果我看得更远，那是因为我站在巨人的肩膀上。”",
-		"newton": "艾萨克·牛顿",
-		"server": "服务器",
-		"operate": "运维",
-		"frontend": "前端",
-		"backend": "后端",
-		"database": "数据库"
-	},
-	"footer": {
-		"ip": "当前IP",
-		"friendLinks": "友情链接",
-		"wikis": "百科",
-		"resources": "资源下载",
-		"contacts": "联系我们",
-		"icp": "备案号: 豫ICP备2023025148号 "
 	}
 }

@@ -1,42 +1,41 @@
 {
-    "navbar": {
-        "main": "홈",
-        "wiki": "위키",
-        "gallery": "갤러리",
-        "guild": "길드",
-        "bbs": "포럼",
-        "rank": "랭킹",
-        "others": "기타",
-        "drawer": "메뉴",
-        "cloud": "파일 스테이션",
-        "about": "우리에 대해",
-        "login": "로그인/회원가입",
-        "theme": "테마",
-        "setting": "설정"
-    },
-    "login": {
-        "brand": "Axolotland에 오신 것을 환영합니다!",
-        "account": "계정",
-        "password": "비밀번호",
-        "login": "로그인",
-        "signup": "회원가입",
-        "username": "사용자 이름",
-        "email": "이메일",
-        "emailCode": "이메일 인증 코드",
-        "sendEmail": "이메일 보내기",
-        "captcha": "캡차",
-        "retrieve": "비밀번호 찾기",
-        "newPassword": "새 비밀번호"
-    },
-    "wiki": {
-        "drawer": "목차",
-        "add": "문서 추가"
-    },
-    "cloud": {
-        "name": "파일 이름",
-        "time": "최종 수정 시간",
-        "size": "크기",
-        "open": "열기/다운로드"
-    }
+  "navbar": {
+    "main": "홈",
+    "wiki": "위키",
+    "gallery": "갤러리",
+    "guild": "길드",
+    "bbs": "포럼",
+    "rank": "랭킹",
+    "others": "기타",
+    "drawer": "메뉴",
+    "cloud": "파일 스테이션",
+    "about": "우리에 대해",
+    "login": "로그인/회원가입",
+    "theme": "테마",
+    "setting": "설정"
+  },
+  "login": {
+    "brand": "Axolotland에 오신 것을 환영합니다!",
+    "account": "계정",
+    "password": "비밀번호",
+    "login": "로그인",
+    "signup": "회원가입",
+    "username": "사용자 이름",
+    "email": "이메일",
+    "emailCode": "이메일 인증 코드",
+    "sendEmail": "이메일 보내기",
+    "captcha": "캡차",
+    "retrieve": "비밀번호 찾기",
+    "newPassword": "새 비밀번호"
+  },
+  "wiki": {
+    "drawer": "목차",
+    "add": "문서 추가"
+  },
+  "cloud": {
+    "name": "파일 이름",
+    "time": "최종 수정 시간",
+    "size": "크기",
+    "open": "열기/다운로드"
+  }
 }
-

@@ -1,22 +1,12 @@
 <script setup lang="ts">
-
-const portraits: [
-  filename: string,
-  title: string,
-][] = [
-
-]
+const portraits: [filename: string, title: string][] = []
 
 interface Group {
-  title: string,
-  links: Link[],
+  title: string
+  links: Link[]
 }
 
-type Link = [
-  title: string,
-  url: string,
-  tooltip: string,
-]
+type Link = [title: string, url: string, tooltip: string]
 
 const groups: Group[] = [
   {
@@ -65,29 +55,6 @@ const groups: Group[] = [
 </script>
 
 <template>
-  <div class="reactive-margin">
-    <h2>关于我</h2>
-    <div class="portrait">
-
-    </div>
-    <h2>{{ $t('about.technologies') }}</h2>
-    <div class="quote-block">
-      <p>{{ $t('about.newtonword') }}</p>
-      <span>{{ $t('about.newton') }}</span>
-    </div>
-    <div class="group-container">
-      <div class="group" v-for="group in groups" :key="group.title">
-        <div class="group-title">
-          {{ $t(group.title) }}
-        </div>
-        <el-tooltip v-for="(link, index) in group.links" :key="index" :content="link[2]" placement="top-start">
-          <el-link :href="link[1]" style="font-size: 16px;">
-            {{ link[0] }}
-          </el-link>
-        </el-tooltip>
-      </div>
-    </div>
-  </div>
 </template>
 
 <style scoped>
@@ -104,7 +71,7 @@ const groups: Group[] = [
 
 .quote-block p {
   margin: 0;
-  font-size: 1.0rem;
+  font-size: 1rem;
   line-height: 1.6;
 }
 

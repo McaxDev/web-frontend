@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {useRoute} from 'vue-router';
-import { forums } from './BBSForumList';
+import { useRoute } from 'vue-router'
+import { forums } from './BBSForumList'
 
 const route = useRoute()
 const forum = forums[route.params.forum as string]

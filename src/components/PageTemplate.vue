@@ -4,26 +4,25 @@
 中心内容和右侧信息栏通过传入插槽决定内容。在移动端变为杨上下布局。
 -->
 <script setup lang="ts">
-import {useUserStore} from '@/stores/user';
+import { useUserStore } from '@/stores/user'
 
 export interface NavSideItem {
-  title: string,
-  icon: any,
-  path: string,
-  login?: boolean, // 为true代表需要登录才显示
+  title: string
+  icon: any
+  path: string
+  login?: boolean // 为true代表需要登录才显示
 }
 
 const user = useUserStore()
 
 defineProps<{
-  path: string,
-  nav: NavSideItem[],
+  path: string
+  nav: NavSideItem[]
 }>()
 </script>
 
 <template>
   <div class="page-template-container">
-
     <el-menu class="page-template-menu hidden-xs-only" router>
       <el-menu-item v-for="item in nav" :key="item.title" :index="`/${path}/${item.path}`">
         <div v-if="!item.login || user.user">
