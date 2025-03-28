@@ -10,11 +10,13 @@
     "gallery": "回忆录",
     "guild": "公会",
     "bbs": "论坛",
+		"server": "服务器",
     "rank": "排行榜",
     "others": "其他",
     "drawer": "菜单",
     "cloud": "文件站",
     "about": "关于我们",
+		"shop": "道具商店",
 		"externalLinks": "外部链接",
     "login": "登录/注册",
 		"download": "下载客户端",
@@ -37,7 +39,6 @@
         "privacy": "隐私设置"
       }
     },
-    "playerLog": "玩家日志",
     "custom": "自定义",
     "pickerTitle": "自定义颜色",
     "selectColor": "请选择颜色",
@@ -49,7 +50,13 @@
     "moreFonts": "更多字体",
     "scan": "扫描二维码",
     "logout": "退出登录",
-    "logoutMsg": "已成功退出登录"
+    "logoutMsg": "已成功退出登录",
+		"menuItems": {
+			"chunkbase": "ChunkBase",
+			"bluemap": "Minecraft网页地图",
+    	"playerLog": "玩家日志",
+			"github": "GitHub / McaxDev"
+		}
   },
   "home": {
     "profile": [
@@ -79,10 +86,6 @@
   },
   "guild": {
 		"layout": {
-			"home": "公会列表",
-			"forum": "公会论坛",
-			"members": "公会成员",
-			"album": "公会相册",
 			"openMenu": "菜单",
 			"openMyGuild": "我的公会",
 			"myGuild": "我的公会",
@@ -92,7 +95,9 @@
 				"home": "公会列表",
 				"forum": "公会论坛",
 				"members": "公会成员",
-				"album": "公会相册"
+				"album": "公会相册",
+				"ware": "公会仓库",
+				"setting": "公会设置"
 			}
 		},
     "list": "公会列表",
@@ -119,7 +124,7 @@
     }
   },
   "login": {
-    "brand": "欢迎加入Axolotland！",
+    "welcome": "欢迎加入Axolotland！",
     "account": "账号",
     "password": "密码",
     "login": "登录",

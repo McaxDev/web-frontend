@@ -19,8 +19,8 @@ const notes = [
 </script>
 
 <template>
-  <el-card class="h-full" body-class="p-0" shadow="hover">
-    <el-carousel height="100vh" class="carousel">
+  <el-card body-class="p-0" shadow="hover">
+    <el-carousel height="calc(100dvh - 84px)" class="carousel">
       <el-carousel-item v-for="item in carousel" :key="item.id">
         <el-image fit="cover" :src="`${addr.api}/file/images/${item.filename}`" class="image" />
       </el-carousel-item>

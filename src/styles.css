@@ -3,15 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --primary: #28abce;
-  --subtle-bg-color: #e5eaf3;
-  --main-bg-color: #f0f0f0;
+  --primary: #28abce; /* 主题色 */
+  --subtle-bg-color: #e5eaf3; /* 页脚背景色 */
+  --main-bg-color: #f0f0f0; /* 主要区域背景色 */
   --nav-active-color: #ff7f7f;
   --font-family: 'Arial, sans-serif';
   --font-size: 16px;
-  --margin-x: 0px;
 
-  --dialog-width: 90%;
 
   font-family: var(--font-family);
   font-size: var(--font-size);
@@ -22,17 +20,22 @@
   --el-font-size-base: 0.9rem;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
+	:root {
+  	--dialog-width: 90%;
+  	--el-menu-base-level-padding: 10px;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
   :root {
     --dialog-width: 70%;
-    --margin-x: 100px;
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1024px) {
   :root {
     --dialog-width: 50%;
-    --margin-x: 200px;
   }
 }
 
@@ -41,8 +44,8 @@
   --main-bg-color: #3c3c3c;
 }
 
-.reactive-margin {
-  margin: 0 var(--margin-x) 0;
+.el-sub-menu__title {
+	padding-right: var(--el-menu-base-level-padding) !important;
 }
 
 .el-link {
@@ -55,28 +58,14 @@
 
 .el-card {
 	border-radius: 12px;
-	box-sizing: border-box;
 }
 
 .el-card__header {
-	color: var(--primary);
 	font-weight: bold;
 }
 
-.el-card__body {
-	height: 100%;
-}
-
-.el-page-header__content {
-	color: var(--primary);
-}
-
-.main-h-full {
-	height: calc(100vh - 60px - 1.5rem);
-}
-
-.d-none {
-	display: none;
+.el-image {
+	display: block;
 }
 
 .no-scrollbar::-webkit-scrollbar {

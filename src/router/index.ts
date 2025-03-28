@@ -64,7 +64,17 @@ const router = createRouter({
         {
           path: 'album',
           name: 'guild.album',
-          component: () => import('@/components/AlbumComponent.vue'),
+          component: () => import('@/guild/GuildAlbum.vue'),
+        },
+        {
+          path: 'ware',
+          name: 'guild.ware',
+          component: () => import('@/guild/GuildWare.vue'),
+        },
+        {
+          path: 'setting',
+          name: 'guild.setting',
+          component: () => import('@/guild/GuildSetting.vue'),
         },
       ],
       meta: {
@@ -81,8 +91,8 @@ const router = createRouter({
     },
     {
       path: '/gallery/:path',
-      name: 'images',
-      component: () => import('@/gallery/Images.vue'),
+      name: 'album',
+      component: () => import('@/gallery/GalleryAlbum.vue'),
       meta: {
         horizontalMargin: true,
       },
@@ -106,11 +116,6 @@ const router = createRouter({
       component: () => import('@/views/About.vue'),
     },
     {
-      path: '/login',
-      name: 'login',
-      component: () => import('@/views/Login.vue'),
-    },
-    {
       path: '/scan',
       name: 'scan',
       component: () => import('@/views/ScanQR.vue'),
@@ -119,6 +124,16 @@ const router = createRouter({
       path: '/user',
       name: 'user',
       component: () => import('@/views/UserProfile.vue'),
+    },
+    {
+      path: '/server',
+      name: 'server',
+      component: () => import('@/server/ServerLayout.vue'),
+    },
+    {
+      path: '/shop',
+      name: 'shop',
+      component: () => import('@/shop/ShopLayout.vue'),
     },
     {
       path: '/system-setting',

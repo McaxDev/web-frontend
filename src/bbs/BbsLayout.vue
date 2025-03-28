@@ -21,7 +21,7 @@ const myinfoState = ref(false)
     </el-card>
 
     <!-- 中间内容区域 -->
-    <el-card class="basis-3/5 grow" body-class="overflow-y-auto" shadow="hover">
+    <el-card class="basis-3/5 grow flex flex-col" body-class="grow overflow-y-auto" shadow="hover">
       <template #header>
         <div class="flex flex-row items-center gap-2">
           <div>{{ $t(`bbs.layout.${$route.name?.toString()}`) }}</div>

@@ -1,6 +1,6 @@
-import type { User } from '@/types'
+import type { User } from '@/utils/tables'
 import { apiAxios } from './axios'
-import { useUserStore } from '@/stores/user'
+import useUserStore from '@/stores/user'
 
 export function getMyInfo() {
   const token = localStorage.getItem('token')

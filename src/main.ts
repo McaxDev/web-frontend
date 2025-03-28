@@ -23,11 +23,21 @@ import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/display.css' // 断点隐藏类
 import 'element-plus/theme-chalk/dark/css-vars.css' // 启用暗黑模式
 import '@/styles.css'
-import TitleCard from './components/TitleCard.vue'
+import { registerSW } from 'virtual:pwa-register'
 
 const app = createApp(App)
 
-app.component('TitleCard', TitleCard)
+// 注册 Service Worker
+registerSW({
+  onNeedRefresh() {
+    // 当有新内容可用时显示更新提示
+    console.log('New content is available; please refresh.')
+  },
+  onOfflineReady() {
+    // 当应用准备好离线工作时
+    console.log('App is ready for offline use.')
+  },
+})
 
 const i18n = createI18n({
   locale: 'zhCN',

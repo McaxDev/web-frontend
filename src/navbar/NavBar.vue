@@ -6,10 +6,12 @@ import { useI18n } from 'vue-i18n'
 import useUserStore from '@/stores/user'
 import LangIcon from './LangIcon.vue'
 import { ElMessage } from 'element-plus'
-import { outerMenuItems } from './MenuItems'
+import OuterNavBar from './OuterNavBar.vue'
 import InnerNavBar from './InnerNavBar.vue'
 import { UserFilled } from '@element-plus/icons-vue'
 import useStateStore from '@/stores/state'
+import LoginSignup from '@/LoginSignup.vue'
+import {rightMenuItems} from './MenuItems'
 
 const route = useRoute()
 const i18n = useI18n()
@@ -17,6 +19,7 @@ const { t } = useI18n()
 const user = useUserStore()
 const state = useStateStore()
 const drawerStatus = ref(false)
+const loginStatus = ref(false)
 
 const languages = [
   ['en', 'English'],
@@ -47,11 +50,11 @@ function logout() {
 </script>
 
 <template>
-  <el-card body-class="p-0" shadow="hover">
+  <el-card body-class="py-0 px-1" shadow="hover">
     <el-menu :default-active="`/${route.path.split('/')[1]}`" mode="horizontal" router :ellipsis="false">
       <!-- 打开导航栏抽屉 -->
-      <el-menu-item class="hidden-sm-and-up navitem-less-px" @click="drawerStatus = true">
-        <el-icon>
+      <el-menu-item v-if="state.windowWidth==='sm'" @click="drawerStatus=true">
+        <el-icon size="2rem">
           <Menu />
         </el-icon>
       </el-menu-item>
@@ -62,31 +65,25 @@ function logout() {
       </el-menu-item>
 
       <!-- 导航栏外层 -->
-      <el-menu-item
-        v-if="state.windowWidth === 'md' || state.windowWidth === 'lg'"
-        v-for="item in outerMenuItems"
-        :key="item.label"
-        class="hidden-xs-only"
-        :index="item.path"
-      >
-        {{ $t(item.label) }}
-      </el-menu-item>
+      <outer-nav-bar v-if="state.windowWidth!=='sm'" />
 
       <!-- 导航栏内层 -->
-      <el-sub-menu v-if="state.windowWidth === 'md'">
+      <el-sub-menu v-if="state.windowWidth==='md'" index="inner">
         <template #title>
           {{ $t('navbar.others') }}
         </template>
         <inner-nav-bar />
       </el-sub-menu>
-      <inner-nav-bar v-if="state.windowWidth === 'lg'" />
+      <inner-nav-bar v-if="state.windowWidth==='lg'" />
 
       <!-- 多语言切换 -->
       <el-sub-menu class="navlist-no-arrow nav-list ms-auto" index="language">
         <template #title>
+          &nbsp;
           <el-icon>
             <lang-icon />
           </el-icon>
+          &nbsp;
         </template>
         <el-menu-item
           v-for="language in languages"
@@ -121,7 +118,7 @@ function logout() {
         </el-menu-item>
 
         <!-- 登录 -->
-        <el-menu-item v-if="!user.user" index="/login">
+        <el-menu-item v-if="!user.user" @click="loginStatus=true">
           <el-icon>
             <User />
           </el-icon>
@@ -136,12 +133,12 @@ function logout() {
           {{ $t('navbar.userSetting.title') }}
         </el-menu-item>
 
-        <!-- 系统设置按钮 -->
-        <el-menu-item index="/system-setting">
+        <!-- 其余的页面导航 -->
+        <el-menu-item v-for="item in rightMenuItems" :key="item.label" :index="item.path">
           <el-icon>
-            <Setting />
+            <component :is="item.icon" />
           </el-icon>
-          {{ $t('navbar.systemSetting') }}
+          {{ $t(item.label) }}
         </el-menu-item>
 
         <!-- 退出登录按钮 -->
@@ -164,12 +161,12 @@ function logout() {
     size="50%"
   >
     <el-menu :default-active="route.path" mode="vertical" router :ellipsis="false">
-      <el-menu-item v-for="item in outerMenuItems" :key="item.label" :index="item.path">
-        {{ $t(item.label) }}
-      </el-menu-item>
+      <outer-nav-bar />
       <inner-nav-bar />
     </el-menu>
   </el-drawer>
+
+  <login-signup v-model="loginStatus" />
 </template>
 
 <style>
@@ -177,10 +174,6 @@ function logout() {
   width: 125px;
   display: flex !important;
   align-items: center;
-}
-
-.ms-auto {
-  margin-left: auto !important;
 }
 
 #el-menu {
@@ -191,22 +184,12 @@ function logout() {
   display: none;
 }
 
-.nav-list .el-sub-menu__title {
-  padding-left: 5px !important;
-  padding-right: 5px !important;
-}
-
-.navitem-less-px {
-  padding-left: 5px !important;
-  padding-right: 5px !important;
-}
-
 .avatar-icon .el-icon {
   margin-right: 0 !important;
 }
 
 .logo {
-  width: 150px;
+  width: 140px;
   height: 30px;
   background-color: var(--primary);
   -webkit-mask-image: url(/logo.png);

@@ -7,9 +7,9 @@ const user = useUserStore()
 </script>
 
 <template>
-  <el-desctiptions v-if="user.user?.guild">
+  <el-descriptions v-if="user.user?.guild">
 
-  </el-desctiptions>
+  </el-descriptions>
 
   <el-empty v-else-if="user.user" :description="$t('guild.myGuild.noGuild')" />
   <el-empty v-else :description="$t('guild.myGuild.logout')" />

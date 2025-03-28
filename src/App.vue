@@ -27,7 +27,7 @@ const mainMargin = computed(() => {
 </script>
 
 <template>
-  <main class="h-screen flex flex-col">
+  <main class="h-dvh flex flex-col">
     <nav class="bg-main pt-2 px-2">
       <nav-bar />
     </nav>
@@ -35,7 +35,7 @@ const mainMargin = computed(() => {
       'grow overflow-y-auto no-scrollbar',
       $route.meta.fullScreen ? 'p-2' : 'my-2 rounded-xl',
       ]" :style="{marginLeft: `${mainMargin}px`, marginRight: `${mainMargin}px`}">
-      <div :class="$route.meta.fullScreen ? 'h-full' : 'min-h-full overflow-y-auto no-scrollbar'">
+      <div :class="$route.meta.fullScreen ? 'h-full' : 'min-h-full'">
         <router-view v-slot="{ Component }">
           <transition :name="settings.transition">
             <component :is="Component" />

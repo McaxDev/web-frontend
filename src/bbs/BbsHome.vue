@@ -9,11 +9,11 @@ import { forumGroups } from './BBSForumList';
 <template>
   <div v-if="forumGroups" class="flex flex-col gap-2">
     <div v-for="group in forumGroups" :key="group.name">
-      <div class="text-primary">{{ group.name }}</div>
+      <div>{{ group.name }}</div>
       <div class="mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         <el-card v-for="forum in group.forums" :key="forum.name"
-          class="aspect-video hover:translate-x-1"
-          body-class="bg-cover flex flex-col justify-end text-white"
+          class="hover:translate-x-1"
+          body-class="aspect-video bg-cover flex flex-col justify-end text-white"
           :body-style="{backgroundImage: `url(${forum.image})`}"
           shadow="hover"
         >
