@@ -52,20 +52,23 @@ export interface User {
 }
 
 // 文档组表
-export interface WikiGroup {
+export interface Wiki {
   id: number,
   label: string,
-  wikis: Wiki[],
+  sort: number,
+  documents: Docs[],
 }
 
 // 文档表
-export interface Wiki {
+export interface Docs {
   id: number,
   createdAt: Date,
   updatedAt: Date,
   path: string,
   title: string,
   content: Content,
+  sort: number,
+  reviews: Review[],
 }
 
 // 在线记录表
@@ -119,7 +122,7 @@ export interface Property {
 }
 
 // 论坛组表
-export interface ForumGroup {
+export interface BBS {
   id: number,
   label: string,
   forums: Forum[],
@@ -131,7 +134,7 @@ export interface Forum {
   path: string,
   title: string,
   subTitle: string,
-  profile: Content,
+  profile: string,
   cover: Image | null,
   posts: Post[],
 }
@@ -141,12 +144,11 @@ export interface Post {
   id: number,
   createdAt: Date,
   updatedAt: Date,
+  pinned: boolean,
   title: string,
-  forum: Forum | null,
-  guild: Guild | null,
-  content: Content,
-  user: User | null,
-  reviews: Review[],
+  content: Content | null,
+  author: User,
+  reviews: Review[] | null,
 }
 
 // 评论表

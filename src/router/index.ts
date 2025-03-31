@@ -9,12 +9,26 @@ const router = createRouter({
       component: () => import('@/home/HomeView.vue'),
     },
     {
-      path: '/wiki/:path?',
-      name: 'wikis',
-      component: () => import('@/wiki/WikiLayout.vue'),
-      meta: {
-        fullScreen: true,
-      },
+      path: '/wiki',
+      name: 'wiki',
+      children: [
+        {
+          path: '',
+          name: 'wiki.list',
+          component: () => import('@/wiki/WikiList.vue'),
+          meta: {
+            horizontalMargin: true,
+          },
+        },
+        {
+          path: ':path',
+          name: 'wiki.path',
+          component: () => import('@/wiki/WikiDocs.vue'),
+          meta: {
+            horizontalMargin: true,
+          },
+        },
+      ],
     },
     {
       path: '/bbs',
@@ -23,8 +37,18 @@ const router = createRouter({
       children: [
         {
           path: '',
-          name: 'bbs.home',
-          component: () => import('@/bbs/BbsHome.vue'),
+          name: 'bbs.list',
+          component: () => import('@/bbs/BbsList.vue'),
+        },
+        {
+          path: 'forum/:path',
+          name: 'bbs.forum',
+          component: () => import('@/bbs/BbsForum.vue'),
+        },
+        {
+          path: 'post/:path',
+          name: 'bbs.post',
+          component: () => import('@/bbs/BbsPost.vue'),
         },
         {
           path: 'news',
@@ -84,7 +108,7 @@ const router = createRouter({
     {
       path: '/gallery',
       name: 'gallery',
-      component: () => import('@/gallery/Gallery.vue'),
+      component: () => import('@/gallery/AlbumList.vue'),
       meta: {
         horizontalMargin: true,
       },
@@ -123,7 +147,7 @@ const router = createRouter({
     {
       path: '/user',
       name: 'user',
-      component: () => import('@/views/UserProfile.vue'),
+      component: () => import('@/views/UserInfo.vue'),
     },
     {
       path: '/server',

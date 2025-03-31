@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { useRoute } from 'vue-router'
 import { ref } from 'vue'
-import { addr } from '@/config'
 import { useI18n } from 'vue-i18n'
 import useUserStore from '@/stores/user'
 import LangIcon from './LangIcon.vue'
@@ -12,12 +11,14 @@ import { UserFilled } from '@element-plus/icons-vue'
 import useStateStore from '@/stores/state'
 import LoginSignup from '@/LoginSignup.vue'
 import {rightMenuItems} from './MenuItems'
+import useSettingStore from '@/setting/setting'
 
 const route = useRoute()
 const i18n = useI18n()
 const { t } = useI18n()
 const user = useUserStore()
 const state = useStateStore()
+const setting = useSettingStore()
 const drawerStatus = ref(false)
 const loginStatus = ref(false)
 
@@ -97,7 +98,7 @@ function logout() {
       <!-- 头像按钮 -->
       <el-sub-menu class="navlist-no-arrow nav-list" index="avatar">
         <template #title>
-          <el-avatar v-if="user.user" :src="`${addr.api}/file/images/${user.user.avatar}`" />
+          <el-avatar v-if="user.user" :src="`${setting.fileAddr}/images/${user.user.avatar}`" />
           <el-avatar v-else :icon="UserFilled" class="avatar-icon" />
         </template>
 

@@ -1,47 +1,42 @@
 <script setup lang="ts">
 import useStateStore from '@/stores/state';
 import BbsNavBar from './BbsNavBar.vue';
-import BbsMyinfo from './BbsMyinfo.vue';
 import {ref} from 'vue';
 
 const state = useStateStore()
 const menuState = ref(false)
-const myinfoState = ref(false)
 </script>
 
 <template>
-  <div class="h-full flex flex-row gap-2">
+  <div class="h-full flex gap-2">
 
-    <!-- 左侧导航栏 -->
-    <el-drawer v-if="state.windowWidth === 'sm'" v-model="menuState" body-class="p-0" size="50%">
-      <bbs-nav-bar />
-    </el-drawer>
-    <el-card class="basis-1/12 grow" body-class="p-0" shadow="hover" v-else>
+    <el-card v-if="state.windowWidth!=='sm'" body-class="p-0" shadow="hover">
       <bbs-nav-bar />
     </el-card>
 
     <!-- 中间内容区域 -->
-    <el-card class="basis-3/5 grow flex flex-col" body-class="grow overflow-y-auto" shadow="hover">
-      <template #header>
-        <div class="flex flex-row items-center gap-2">
-          <div>{{ $t(`bbs.layout.${$route.name?.toString()}`) }}</div>
-          <el-button v-if="state.windowWidth === 'sm'" class="ms-auto" @click="menuState = true">
-            {{ $t('bbs.layout.openMenu') }}
-          </el-button>
-          <el-button v-if="state.windowWidth === 'sm'" @click="myinfoState = true">
-            {{ $t('bbs.layout.openMyinfo') }}
-          </el-button>
-        </div>
-      </template>
-      <router-view />
-    </el-card>
+    <div class="grow flex flex-col gap-2">
 
-    <!-- 右侧个人信息 -->
-    <el-drawer v-if="state.windowWidth === 'sm'" v-model="myinfoState" size="50%" :title="$t('bbs.layout.myinfo')">
-      <bbs-myinfo />
-    </el-drawer>
-    <el-card class="basis-1/5 grow" shadow="hover" :header="$t('bbs.layout.myinfo')" v-else>
-      <bbs-myinfo />
-    </el-card>
+      <div class="flex justify-between mx-4" v-if="state.windowWidth==='sm'">
+        <div class="font-bold">
+          {{ $t('bbs.title') }}
+        </div>
+        <el-button v-if="state.windowWidth==='sm'" @click="menuState=true">
+          {{ $t('bbs.layout.openMenu') }}
+        </el-button>
+      </div>
+
+      <div class="grow min-h-0">
+        <router-view />
+      </div>
+
+    </div>
+
   </div>
+
+
+  <!-- 左侧导航栏 -->
+  <el-drawer v-model="menuState" body-class="p-0" size="50%">
+    <bbs-nav-bar />
+  </el-drawer>
 </template>

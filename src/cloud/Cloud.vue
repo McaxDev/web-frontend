@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { addr } from '@/config'
+import useSettingStore from '@/setting/setting'
 import axios from 'axios'
 import { watch } from 'vue'
 import { ref } from 'vue'
@@ -12,6 +12,7 @@ interface File {
   fmtSize: string
 }
 
+const setting = useSettingStore()
 const files = ref<File[]>([])
 const currentPath = ref('/')
 
@@ -19,7 +20,7 @@ watch(
   currentPath,
   (value) => {
     axios
-      .get<File[]>(addr.api + '/file/cloud' + value)
+      .get<File[]>(setting.fileAddr + '/cloud' + value)
       .then((res) => {
         files.value = res.data
         files.value.forEach((item) => {
@@ -81,7 +82,7 @@ function goPreMenu() {
             {{ $t('cloud.open') }}
           </el-button>
           <el-button v-else>
-            <el-link :href="`${addr.file}/cloud${currentPath}${scope.row.name}`" target="_blank">
+            <el-link :href="`${setting.fileAddr}/cloud${currentPath}${scope.row.name}`" target="_blank">
               {{ $t('cloud.download') }}
             </el-link>
           </el-button>

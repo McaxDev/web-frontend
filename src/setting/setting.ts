@@ -1,6 +1,6 @@
 import {useCssVar} from '@vueuse/core'
 import { defineStore } from 'pinia'
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 
 const useSettingStore = defineStore(
   'setting',

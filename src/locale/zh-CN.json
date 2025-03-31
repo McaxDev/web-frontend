@@ -138,15 +138,24 @@
     "newPassword": "新密码"
   },
   "wiki": {
-    "drawer": "目录",
-    "add": "新增文档",
-    "edit": "编辑",
-    "delete": "删除",
-    "path": "路径",
-    "title": "标题",
-    "content": "内容"
+		"list": {
+			"submit": "提交",
+			"recall": "撤销"
+		},
+		"docs": {
+			"submit": "提交",
+			"recall": "撤销"
+		}
   },
   "bbs": {
+		"title": "论坛",
+		"forum": {
+			"sendPost": "我要发帖",
+			"forumInfo": "论坛信息",
+			"postTitle": "标题",
+			"authorName": "作者",
+			"updatedAt": "更新时间"
+		},
     "layout": {
       "home": "论坛主页",
       "news": "最新消息",
@@ -161,6 +170,17 @@
 				"members": "成员列表"
 			}
     },
+		"post": {
+			"reviewTitle": "评论列表",
+			"createdAt": "创建于",
+			"updatedAt": "更新于"
+		},
+		"forumInfo": {
+			"title": "论坛信息"
+		},
+		"list": {
+			"title": "论坛列表"
+		},
 		"myinfo": {
 			"empty": "请先登录"
 		},

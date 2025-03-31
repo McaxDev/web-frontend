@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
-import { addr } from '@/config'
 
 declare module 'axios' {
   interface AxiosRequestConfig {
@@ -9,7 +8,7 @@ declare module 'axios' {
 }
 
 export const apiAxios = axios.create({
-  baseURL: addr.api,
+  baseURL: 'https://mcax.cn:520',
   timeout: 5000,
   headers: {
     'Content-Type': 'application/json',
@@ -17,7 +16,7 @@ export const apiAxios = axios.create({
 })
 
 export const fileAxios = axios.create({
-  baseURL: addr.file,
+  baseURL: 'https://mcax.cn:520/file',
   timeout: 5000,
 })
 
